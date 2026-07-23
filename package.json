@@ -2,9 +2,10 @@
   "name": "quizito-website",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vinext dev",
-    "build": "vinext build && mkdir -p dist/.openai && cp .openai/hosting.json dist/.openai/hosting.json && cp hosting-index.js dist/server/index.js",
+    "build": "vinext build && mkdir -p dist/.openai && cp .openai/hosting.json dist/.openai/hosting.json",
     "start": "vinext start"
   },
   "dependencies": {
