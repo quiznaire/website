@@ -57,7 +57,7 @@ h1 em, h2 em { font-style: normal; color: var(--coral); }
 .questionCard div b { float: right; }
 .scribble { font-family: "Shadows Into Light"; font-size: 26px; position: absolute; right: 245px; bottom: 20px; transform: rotate(-8deg); }
 .marquee { overflow: hidden; border-block: 2px solid var(--ink); background: var(--yellow); transform: rotate(-1deg) scale(1.01); }
-.marquee div { width: max-content; padding: 14px 0; font: 800 20px "League Spartan"; letter-spacing: 2px; }
+.marquee div { width: max-content; padding: 14px 32px; font: 800 20px "League Spartan"; letter-spacing: 2px; }
 .manifesto { padding: 150px 0; display: grid; grid-template-columns: 1fr 3fr; gap: 60px; }
 .manifesto h2, .sectionHead h2, .how h2, .contribute h2, .cta h2 { font-size: clamp(54px, 7vw, 92px); }
 .manifesto > div:last-child > p { max-width: 720px; margin: 35px 0 48px; font-size: 20px; line-height: 1.6; }
