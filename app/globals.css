@@ -128,13 +128,32 @@ h1 em, h2 em { font-style: normal; color: var(--coral); }
 .toast button { color: white; border: 0; background: none; margin-left: 20px; cursor: pointer; font-size: 20px; }
 @keyframes enter { from { transform: translateY(20px); opacity: 0; } }
 
-@media (max-width: 900px) {
-  .hero { padding-top: 60px; min-height: 760px; }
-  .scoreCard { right: 20px; top: 250px; scale: .82; }
-  .questionCard { right: 20px; bottom: 40px; }
-  .heroBottom { align-items: start; flex-direction: column; gap: 25px; max-width: 420px; }
-  .manifesto { grid-template-columns: 1fr; }
-  .contribute { gap: 45px; }
+@media (min-width: 721px) and (max-width: 1024px) {
+  .shell { width: min(100% - 64px, 900px); }
+  .nav { height: 82px; }
+  .menuButton { display: block; cursor: pointer; }
+  .links { display: none; position: absolute; top: 74px; right: 0; width: 300px; background: var(--cream); border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 22px; flex-direction: column; align-items: stretch; gap: 8px; }
+  .links.open { display: flex; }
+  .links .pill { align-self: stretch; }
+  .hero { min-height: 780px; padding-top: 70px; }
+  .hero h1 { font-size: clamp(80px, 11.5vw, 112px); max-width: 760px; }
+  .heroBottom { align-items: flex-start; flex-direction: column; gap: 26px; max-width: 430px; }
+  .scoreCard { right: 26px; top: 310px; scale: .88; }
+  .questionCard { right: 30px; bottom: 54px; }
+  .scribble { right: 275px; bottom: 34px; }
+  .manifesto { grid-template-columns: 1fr 3fr; gap: 30px; padding-block: 120px; }
+  .manifesto h2, .sectionHead h2, .how h2, .contribute h2, .cta h2 { font-size: clamp(58px, 8vw, 74px); }
+  .subject { min-height: 140px; padding: 22px; }
+  .subject strong { font-size: 24px; }
+  .how { padding-block: 110px; }
+  .steps { gap: 26px; }
+  .contribute { grid-template-columns: .9fr 1.1fr; gap: 48px; padding-block: 120px; }
+  .contributeArt { height: 460px; }
+  .note.one { left: 24px; width: 250px; }
+  .note.two { right: 18px; width: 180px; }
+  .trustGrid article { padding-inline: 22px; }
+  .footer { grid-template-columns: 2fr 1fr 1fr; }
+  .footer > div:nth-child(4) { grid-column: 2; }
 }
 
 @media (max-width: 720px) {
@@ -145,11 +164,11 @@ h1 em, h2 em { font-style: normal; color: var(--coral); }
   .links.open { display: flex; }
   .links .pill { align-self: stretch; }
   h1 { font-size: clamp(56px, 18vw, 84px); letter-spacing: -3px; }
-  .hero { min-height: 850px; padding-top: 50px; }
+  .hero { min-height: 890px; padding-top: 50px; }
   .heroBottom > p { font-size: 16px; }
   .actions { align-items: flex-start; flex-direction: column; }
-  .scoreCard { top: auto; bottom: 195px; right: auto; left: 5px; }
-  .questionCard { width: 260px; right: 6px; bottom: 24px; }
+  .scoreCard { top: auto; bottom: 210px; right: auto; left: 5px; }
+  .questionCard { width: min(270px, calc(100vw - 52px)); right: 6px; bottom: 28px; }
   .scribble { display: none; }
   .manifesto, .subjects, .contribute { padding-block: 100px; }
   .manifesto h2, .sectionHead h2, .how h2, .contribute h2, .cta h2 { font-size: 54px; letter-spacing: -3px; }
@@ -169,6 +188,34 @@ h1 em, h2 em { font-style: normal; color: var(--coral); }
   .trustGrid article { border-right: 0; border-bottom: 1px solid #aaa59d; }
   .trustGrid article:last-child { border-bottom: 0; }
   .footer { gap: 30px; }
+}
+
+@media (max-width: 420px) {
+  .shell { width: calc(100% - 24px); }
+  .brand { font-size: 21px; }
+  .brand span { width: 34px; height: 34px; font-size: 20px; }
+  h1 { font-size: clamp(50px, 17vw, 68px); }
+  .hero { min-height: 850px; padding-top: 38px; }
+  .heroBottom { margin-top: 28px; }
+  .heroBottom > p { line-height: 1.5; }
+  .pill { width: 100%; }
+  .actions { width: 100%; }
+  .scoreCard { left: 2px; bottom: 200px; transform: rotate(3deg); }
+  .questionCard { right: 2px; bottom: 22px; transform: rotate(-2deg); }
+  .manifesto h2, .sectionHead h2, .how h2, .contribute h2, .cta h2 { font-size: 47px; }
+  .manifesto > div:last-child > p { font-size: 17px; }
+  .statRow { grid-template-columns: 1fr; gap: 20px; }
+  .statRow div { grid-template-columns: 60px 1fr; align-items: center; }
+  .subject { min-height: 112px; gap: 12px; }
+  .subjectIcon { width: 40px; font-size: 30px; }
+  .subject strong { font-size: 21px; }
+  .subject small { font-size: 12px; }
+  .contributeArt { height: 390px; }
+  .note.one { left: 14px; top: 48px; width: 230px; padding: 18px; }
+  .note.one p { font-size: 19px; }
+  .note.two { right: 14px; bottom: 42px; width: 170px; padding: 18px; }
+  .orbit { width: 64px; height: 64px; right: 16px; top: 20px; font-size: 40px; }
+  .toast { left: 12px; right: 12px; bottom: 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
