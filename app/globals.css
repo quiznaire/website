@@ -8,6 +8,7 @@
   --blue: #88c8ff;
   --yellow: #ffd65b;
   --muted: #69697b;
+  --logo: #003e7e;
 }
 
 * { box-sizing: border-box; }
@@ -18,8 +19,8 @@ button { color: inherit; }
 a { color: inherit; text-decoration: none; }
 .shell { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
 .nav { height: 92px; display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 20; }
-.brand { display: inline-flex; gap: 11px; align-items: center; font: 900 24px/1 "League Spartan"; letter-spacing: -.5px; }
-.brand span { display: grid; place-items: center; width: 38px; height: 38px; background: var(--lime); border: 2px solid var(--ink); border-radius: 50% 48% 45% 52%; transform: rotate(-5deg); font-size: 22px; }
+.brand { color: var(--logo); display: inline-flex; gap: 11px; align-items: center; font: 900 24px/1 "League Spartan"; letter-spacing: -.5px; }
+.brand span { display: grid; place-items: center; width: 38px; height: 38px; background: var(--lime); border: 2px solid var(--logo); border-radius: 50% 48% 45% 52%; transform: rotate(-5deg); font-size: 22px; }
 .links { display: flex; align-items: center; gap: 34px; font-weight: 600; font-size: 14px; }
 .links a { border-bottom: 2px solid transparent; padding-block: 10px; }
 .links a:hover { border-color: var(--ink); }
