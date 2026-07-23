@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=League+Spartan:wght@700;800;900&family=Shadows+Into+Light&display=swap');
+
+:root {
+  --ink: #171728;
+  --cream: #f7f2e8;
+  --lime: #c7f35b;
+  --coral: #ff765d;
+  --blue: #88c8ff;
+  --yellow: #ffd65b;
+  --muted: #69697b;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--ink); background: var(--cream); font-family: "DM Sans", sans-serif; }
+button, a { font: inherit; }
+button { color: inherit; }
+a { color: inherit; text-decoration: none; }
+.shell { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+.nav { height: 92px; display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 20; }
+.brand { display: inline-flex; gap: 11px; align-items: center; font: 900 24px/1 "League Spartan"; letter-spacing: -.5px; }
+.brand span { display: grid; place-items: center; width: 38px; height: 38px; background: var(--lime); border: 2px solid var(--ink); border-radius: 50% 48% 45% 52%; transform: rotate(-5deg); font-size: 22px; }
+.links { display: flex; align-items: center; gap: 34px; font-weight: 600; font-size: 14px; }
+.links a { border-bottom: 2px solid transparent; padding-block: 10px; }
+.links a:hover { border-color: var(--ink); }
+.menuButton { display: none; background: none; border: 0; font-size: 24px; }
+.pill { border: 2px solid var(--ink); border-radius: 999px; padding: 16px 22px; display: inline-flex; gap: 22px; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; box-shadow: 4px 4px 0 var(--ink); transition: transform .18s, box-shadow .18s; }
+.pill:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.pill.dark { color: white; background: var(--ink); box-shadow: none; }
+.pill.small { padding: 11px 17px; border: 0; }
+.pill.lime { background: var(--lime); }
+.pill.coral { background: var(--coral); }
+.hero { min-height: 700px; padding: 82px 0 70px; position: relative; }
+.eyebrow, .sectionTag { text-transform: uppercase; letter-spacing: 2px; font-weight: 800; font-size: 12px; }
+.eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.eyebrow i { width: 8px; height: 8px; background: var(--coral); border-radius: 50%; }
+h1, h2 { font-family: "League Spartan"; font-weight: 900; letter-spacing: -4px; line-height: .83; margin: 0; }
+h1 { font-size: clamp(72px, 9.8vw, 142px); max-width: 900px; }
+h1 em, h2 em { font-style: normal; color: var(--coral); }
+.heroBottom { margin-top: 38px; display: flex; gap: 70px; align-items: flex-end; }
+.heroBottom > p { max-width: 410px; font-size: 18px; line-height: 1.6; margin: 0; color: #4e4e5c; }
+.actions { display: flex; align-items: center; gap: 28px; }
+.textLink { font-weight: 700; border-bottom: 2px solid; padding-bottom: 5px; }
+.textLink span { margin-left: 14px; }
+.scoreCard, .questionCard { position: absolute; background: white; border: 2px solid var(--ink); box-shadow: 7px 7px 0 var(--ink); border-radius: 12px; z-index: 2; }
+.scoreCard { right: 35px; top: 60px; width: 190px; padding: 20px; transform: rotate(6deg); display: grid; }
+.scoreCard span, .questionCard > span { font-size: 10px; letter-spacing: 1.5px; font-weight: 800; }
+.scoreCard strong { font: 900 60px/1 "League Spartan"; margin-top: 8px; }
+.scoreCard strong small { font-size: 20px; color: var(--muted); }
+.scoreCard b { color: #5f7c18; background: var(--lime); padding: 5px 8px; justify-self: start; margin-top: 6px; }
+.questionCard { right: 5px; bottom: 34px; width: 300px; padding: 20px; transform: rotate(-4deg); }
+.questionCard p { font-weight: 700; line-height: 1.35; }
+.questionCard div { border: 2px solid var(--ink); border-radius: 8px; padding: 10px; background: var(--lime); font-weight: 700; }
+.questionCard div i { font-style: normal; margin-right: 10px; }
+.questionCard div b { float: right; }
+.scribble { font-family: "Shadows Into Light"; font-size: 26px; position: absolute; right: 245px; bottom: 20px; transform: rotate(-8deg); }
+.marquee { overflow: hidden; border-block: 2px solid var(--ink); background: var(--yellow); transform: rotate(-1deg) scale(1.01); }
+.marquee div { width: max-content; padding: 14px 0; font: 800 20px "League Spartan"; letter-spacing: 2px; }
+.manifesto { padding: 150px 0; display: grid; grid-template-columns: 1fr 3fr; gap: 60px; }
+.manifesto h2, .sectionHead h2, .how h2, .contribute h2, .cta h2 { font-size: clamp(54px, 7vw, 92px); }
+.manifesto > div:last-child > p { max-width: 720px; margin: 35px 0 48px; font-size: 20px; line-height: 1.6; }
+.statRow { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 2px solid var(--ink); padding-top: 24px; }
+.statRow div { display: grid; }
+.statRow strong { font: 900 42px "League Spartan"; }
+.statRow span { color: var(--muted); font-size: 13px; }
+.subjects { padding: 30px 0 150px; }
+.sectionHead { display: flex; justify-content: space-between; align-items: end; margin-bottom: 50px; }
+.sectionHead .sectionTag, .how .sectionTag, .contribute .sectionTag { margin-bottom: 22px; }
+.sectionHead > p { max-width: 340px; line-height: 1.6; }
+.subjectGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.subject { min-height: 155px; border: 2px solid var(--ink); padding: 26px; display: flex; align-items: center; gap: 20px; text-align: left; cursor: pointer; transition: transform .2s; }
+.subject:hover { transform: translateY(-4px) rotate(-.5deg); }
+.subject.lime { background: var(--lime); }.subject.coral { background: var(--coral); }.subject.blue { background: var(--blue); }.subject.yellow { background: var(--yellow); }
+.subjectIcon { font-size: 38px; width: 60px; }
+.subject > span:nth-child(2) { display: grid; gap: 7px; flex: 1; }
+.subject strong { font: 800 28px "League Spartan"; }
+.subject small { font-size: 14px; }
+.subject > span:last-child { font-size: 22px; }
+.allSubjects { margin: 28px auto 0; display: block; background: none; border: 0; border-bottom: 2px solid; padding: 8px; font-weight: 700; cursor: pointer; }
+.allSubjects span { margin-left: 12px; }
+.how { color: white; background: var(--ink); padding: 130px 0; }
+.sectionTag.light { color: var(--lime); }
+.how h2 em { color: var(--lime); }
+.howTitle { display: flex; justify-content: space-between; align-items: end; }
+.howTitle p { color: #babaca; max-width: 300px; line-height: 1.6; }
+.steps { margin-top: 80px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; }
+.steps article { border-top: 1px solid #515160; padding-top: 26px; }
+.steps article > span { color: var(--lime); font: 800 14px "League Spartan"; }
+.steps h3 { font: 800 28px "League Spartan"; margin: 36px 0 14px; }
+.steps p { color: #b8b8c5; line-height: 1.7; font-size: 14px; }
+.contribute { padding: 150px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+.contributeArt { height: 520px; background: var(--blue); border: 2px solid var(--ink); position: relative; overflow: hidden; }
+.contributeArt:after { content: ""; position: absolute; width: 340px; height: 340px; border: 2px dashed var(--ink); border-radius: 50%; left: -100px; bottom: -100px; }
+.note { position: absolute; background: white; border: 2px solid var(--ink); box-shadow: 7px 7px 0 var(--ink); padding: 24px; z-index: 2; }
+.note.one { width: 300px; left: 45px; top: 70px; transform: rotate(-5deg); }
+.note.one span { font-size: 11px; letter-spacing: 2px; font-weight: 800; color: var(--muted); }
+.note.one p { font: 700 22px/1.35 "League Spartan"; }
+.note.two { width: 210px; right: 35px; bottom: 65px; transform: rotate(7deg); display: grid; }
+.note.two b { font-size: 11px; letter-spacing: 2px; }
+.note.two strong { font-size: 52px; color: #658e16; }
+.note.two small { font-weight: 700; }
+.orbit { position: absolute; right: 34px; top: 42px; width: 82px; height: 82px; border-radius: 50%; background: var(--yellow); border: 2px solid var(--ink); display: grid; place-items: center; font: 900 52px "League Spartan"; }
+.contributeCopy > p { line-height: 1.7; font-size: 17px; color: #555564; }
+.contributeCopy ul { list-style: none; padding: 10px 0 20px; }
+.contributeCopy li { border-bottom: 1px solid #c6c1b8; padding: 14px 0; font-weight: 600; }
+.contributeCopy li span { color: var(--coral); margin-right: 16px; font-weight: 800; }
+.trust { padding: 0 0 150px; }
+.trustGrid { display: grid; grid-template-columns: repeat(3, 1fr); border-block: 2px solid var(--ink); margin-top: 26px; }
+.trustGrid article { padding: 42px 32px; border-right: 1px solid #aaa59d; }
+.trustGrid article:last-child { border-right: 0; }
+.trustGrid article > span { font-size: 34px; }
+.trustGrid h3 { font: 800 24px "League Spartan"; }
+.trustGrid p { color: var(--muted); line-height: 1.6; font-size: 14px; }
+.cta { background: var(--coral); padding: 120px 0; text-align: center; border-block: 2px solid var(--ink); }
+.cta h2 em { color: white; }
+.cta p { max-width: 500px; margin: 30px auto; font-size: 18px; line-height: 1.6; }
+.miniBurst { display: inline-grid; place-items: center; width: 74px; height: 74px; background: var(--yellow); border: 2px solid var(--ink); border-radius: 50%; font: 900 12px "League Spartan"; transform: rotate(-8deg); margin-bottom: 28px; }
+.lightPill { background: var(--cream); }
+.footer { padding: 70px 0 36px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; }
+.footer > div:not(.footerBrand) { display: flex; flex-direction: column; gap: 12px; font-size: 14px; }
+.footer strong { margin-bottom: 8px; }
+.footer button { border: 0; background: none; text-align: left; padding: 0; cursor: pointer; }
+.footer button:hover, .footer a:not(.brand):hover { text-decoration: underline; }
+.footerBrand p { color: var(--muted); max-width: 300px; line-height: 1.6; font-size: 14px; }
+.footer > small { grid-column: 1/-1; border-top: 1px solid #c9c4bb; padding-top: 24px; color: var(--muted); }
+.toast { position: fixed; z-index: 50; right: 24px; bottom: 24px; background: var(--ink); color: white; border: 2px solid white; box-shadow: 5px 5px 0 var(--lime); padding: 16px 18px; border-radius: 8px; font-weight: 600; animation: enter .25s ease-out; }
+.toast button { color: white; border: 0; background: none; margin-left: 20px; cursor: pointer; font-size: 20px; }
+@keyframes enter { from { transform: translateY(20px); opacity: 0; } }
+
+@media (max-width: 900px) {
+  .hero { padding-top: 60px; min-height: 760px; }
+  .scoreCard { right: 20px; top: 250px; scale: .82; }
+  .questionCard { right: 20px; bottom: 40px; }
+  .heroBottom { align-items: start; flex-direction: column; gap: 25px; max-width: 420px; }
+  .manifesto { grid-template-columns: 1fr; }
+  .contribute { gap: 45px; }
+}
+
+@media (max-width: 720px) {
+  .shell { width: min(100% - 30px, 1160px); }
+  .nav { height: 74px; }
+  .menuButton { display: block; cursor: pointer; }
+  .links { display: none; position: absolute; top: 68px; left: 0; right: 0; background: var(--cream); border: 2px solid var(--ink); padding: 20px; flex-direction: column; align-items: stretch; gap: 10px; }
+  .links.open { display: flex; }
+  .links .pill { align-self: stretch; }
+  h1 { font-size: clamp(56px, 18vw, 84px); letter-spacing: -3px; }
+  .hero { min-height: 850px; padding-top: 50px; }
+  .heroBottom > p { font-size: 16px; }
+  .actions { align-items: flex-start; flex-direction: column; }
+  .scoreCard { top: auto; bottom: 195px; right: auto; left: 5px; }
+  .questionCard { width: 260px; right: 6px; bottom: 24px; }
+  .scribble { display: none; }
+  .manifesto, .subjects, .contribute { padding-block: 100px; }
+  .manifesto h2, .sectionHead h2, .how h2, .contribute h2, .cta h2 { font-size: 54px; letter-spacing: -3px; }
+  .statRow { gap: 12px; }
+  .statRow strong { font-size: 34px; }
+  .sectionHead, .howTitle { display: block; }
+  .sectionHead > p, .howTitle p { margin-top: 28px; }
+  .subjectGrid, .steps, .contribute, .trustGrid, .footer { grid-template-columns: 1fr; }
+  .subject { min-height: 125px; padding: 20px; }
+  .subject strong { font-size: 23px; }
+  .how { padding-block: 100px; }
+  .steps { gap: 24px; margin-top: 55px; }
+  .contribute { gap: 65px; }
+  .contributeArt { height: 430px; }
+  .note.one { left: 20px; top: 55px; width: 255px; }
+  .note.two { right: 20px; bottom: 50px; }
+  .trustGrid article { border-right: 0; border-bottom: 1px solid #aaa59d; }
+  .trustGrid article:last-child { border-bottom: 0; }
+  .footer { gap: 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *:before, *:after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
