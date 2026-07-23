@@ -1,5 +1,7 @@
 .next
+.vinext
 dist
+out
 node_modules
 .DS_Store
 next-env.d.ts

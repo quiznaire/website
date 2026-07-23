@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const subjects = [
@@ -165,7 +166,7 @@ export default function Home() {
         </div>
         <div><strong>Explore</strong><a href="#how">How it works</a><a href="#subjects">Subjects</a><a href="#contribute">Contribute</a></div>
         <div><strong>Company</strong><button onClick={() => comingSoon("About Quizito")}>About</button><button onClick={() => comingSoon("Help centre")}>Help & support</button></div>
-        <div><strong>Legal</strong><a href="/terms">Terms &amp; Conditions</a><a href="/privacy">Privacy Policy</a></div>
+        <div><strong>Legal</strong><Link href="/terms">Terms &amp; Conditions</Link><Link href="/privacy">Privacy Policy</Link></div>
         <small>© 2026 Powerpage Education Pvt. Ltd. All rights reserved.</small>
       </footer>
       {notice && <div className="toast" role="status">{notice}<button onClick={() => setNotice("")}>×</button></div>}
