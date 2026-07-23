@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Brand from "./Brand";
 
 const subjects = [
   ["Physics", "⚛", "Forces, motion & more", "lime"],
@@ -35,15 +36,13 @@ export default function Home() {
   return (
     <main>
       <nav className="nav shell" aria-label="Primary navigation">
-        <a className="brand" href="#top" aria-label="Quizito home">
-          <span>Q</span>QUIZITO
-        </a>
+        <Brand href="#top" />
         <button className="menuButton" onClick={() => setMenu(!menu)} aria-label="Toggle menu">☰</button>
         <div className={`links ${menu ? "open" : ""}`}>
           <a href="#how" onClick={() => setMenu(false)}>How it works</a>
           <a href="#subjects" onClick={() => setMenu(false)}>Subjects</a>
           <a href="#contribute" onClick={() => setMenu(false)}>Contribute</a>
-          <button className="pill dark small" onClick={() => comingSoon("The Quizito app")}>Get the app <Arrow /></button>
+          <button className="pill dark small" onClick={() => comingSoon("The Quiznaire app")}>Get the app <Arrow /></button>
         </div>
       </nav>
 
@@ -68,15 +67,15 @@ export default function Home() {
         <div className="scribble">Think fast!</div>
       </section>
 
-      <section className="marquee" aria-label="Quizito highlights">
+      <section className="marquee" aria-label="Quiznaire highlights">
         <div>PLAY • LEARN • CONTRIBUTE • GROW • PLAY • LEARN • CONTRIBUTE • GROW •</div>
       </section>
 
       <section className="manifesto shell">
-        <div className="sectionTag">Why Quizito</div>
+        <div className="sectionTag">Why Quiznaire</div>
         <div>
           <h2>YOUR KNOWLEDGE<br />SHOULD <em>MOVE.</em></h2>
-          <p>Quizito turns what you know into momentum. Compete in subject-based quizzes, build sharper recall and help create a fresh question bank for learners across India.</p>
+          <p>Quiznaire turns what you know into momentum. Compete in subject-based quizzes, build sharper recall and help create a fresh question bank for learners across India.</p>
           <div className="statRow">
             <div><strong>8+</strong><span>subjects to explore</span></div>
             <div><strong>1</strong><span>question at a time</span></div>
@@ -131,7 +130,7 @@ export default function Home() {
         <div className="contributeCopy">
           <div className="sectionTag">Know a great question?</div>
           <h2>DON&apos;T KEEP IT<br /><em>TO YOURSELF.</em></h2>
-          <p>Submit original, conceptual questions to the Quizito question bank. Every contribution is checked for clarity, accuracy and uniqueness before it joins the pool.</p>
+          <p>Submit original, conceptual questions to the Quiznaire question bank. Every contribution is checked for clarity, accuracy and uniqueness before it joins the pool.</p>
           <ul>
             <li><span>01</span> Write an original objective question</li>
             <li><span>02</span> Add the answer, subject and difficulty</li>
@@ -154,20 +153,20 @@ export default function Home() {
         <div className="shell">
           <span className="miniBurst">READY?</span>
           <h2>YOUR NEXT<br /><em>QUESTION</em><br />IS WAITING.</h2>
-          <p>Quizito is getting ready for launch. Be among the first to put your knowledge in play.</p>
+          <p>Quiznaire is getting ready for launch. Be among the first to put your knowledge in play.</p>
           <button className="pill lightPill" onClick={() => comingSoon("Early access")}>Join early access <Arrow /></button>
         </div>
       </section>
 
       <footer className="footer shell">
         <div className="footerBrand">
-          <a className="brand" href="#top"><span>Q</span>QUIZITO</a>
-          <p>A learning and quiz platform by Powerpage Education Private Limited.</p>
+          <Brand href="#top" />
+          <p>A learning and quiz platform by <a href="https://powerpageedu.com">Powerpage Education Private Limited</a>.</p>
         </div>
         <div><strong>Explore</strong><a href="#how">How it works</a><a href="#subjects">Subjects</a><a href="#contribute">Contribute</a></div>
-        <div><strong>Company</strong><button onClick={() => comingSoon("About Quizito")}>About</button><button onClick={() => comingSoon("Help centre")}>Help & support</button></div>
+        <div><strong>Company</strong><button onClick={() => comingSoon("About Quiznaire")}>About</button><button onClick={() => comingSoon("Help centre")}>Help & support</button></div>
         <div><strong>Legal</strong><Link href="/terms">Terms &amp; Conditions</Link><Link href="/privacy">Privacy Policy</Link></div>
-        <small>© 2026 Powerpage Education Pvt. Ltd. All rights reserved.</small>
+        <small>© 2026 <a href="https://powerpageedu.com">Powerpage Education Pvt. Ltd.</a> All rights reserved.</small>
       </footer>
       {notice && <div className="toast" role="status">{notice}<button onClick={() => setNotice("")}>×</button></div>}
     </main>
