@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Brand from "../Brand";
 
-export default function LegalShell({ eyebrow, title, intro, children }) {
+export default function LegalShell({ eyebrow, title, intro, lastUpdated = "23 July 2026", children }) {
   return (
     <main className="legalPage">
       <nav className="nav shell legalNav" aria-label="Legal page navigation">
@@ -16,7 +16,7 @@ export default function LegalShell({ eyebrow, title, intro, children }) {
           <p>{intro}</p>
           <div className="legalMeta">
             <span>Last updated</span>
-            <strong>23 July 2026</strong>
+            <strong>{lastUpdated}</strong>
           </div>
         </div>
       </header>
