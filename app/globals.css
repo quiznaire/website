@@ -17,6 +17,8 @@ body { margin: 0; overflow-x: hidden; color: var(--ink); background: var(--cream
 button, a { font: inherit; }
 button { color: inherit; }
 a { color: inherit; text-decoration: none; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--logo); outline-offset: 4px; }
 .shell { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
 .nav { height: 92px; display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 20; }
 .brand { color: var(--logo); display: inline-flex; gap: 10px; align-items: center; font: 900 24px/1 "League Spartan"; letter-spacing: -.5px; }
@@ -25,7 +27,11 @@ a { color: inherit; text-decoration: none; }
 .links { display: flex; align-items: center; gap: 34px; font-weight: 600; font-size: 14px; }
 .links a { border-bottom: 2px solid transparent; padding-block: 10px; }
 .links a:hover { border-color: var(--ink); }
-.menuButton { display: none; background: none; border: 0; font-size: 24px; }
+.menuButton { display: none; width: 46px; height: 46px; padding: 11px; background: var(--cream); border: 2px solid var(--ink); border-radius: 50%; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+.menuButton span { display: block; width: 20px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
+.menuButton.active span:first-child { transform: translateY(7px) rotate(45deg); }
+.menuButton.active span:nth-child(2) { opacity: 0; }
+.menuButton.active span:last-child { transform: translateY(-7px) rotate(-45deg); }
 .pill { border: 2px solid var(--ink); border-radius: 999px; padding: 16px 22px; display: inline-flex; gap: 22px; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; box-shadow: 4px 4px 0 var(--ink); transition: transform .18s, box-shadow .18s; }
 .pill:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
 .pill.dark { color: white; background: var(--ink); box-shadow: none; }
@@ -44,8 +50,9 @@ h1 em, h2 em { font-style: normal; color: var(--coral); }
 .actions { display: flex; align-items: center; gap: 28px; }
 .textLink { font-weight: 700; border-bottom: 2px solid; padding-bottom: 5px; }
 .textLink span { margin-left: 14px; }
+.heroVisual { position: absolute; z-index: 2; width: 340px; height: 620px; right: 0; top: 55px; pointer-events: none; }
 .scoreCard, .questionCard { position: absolute; background: white; border: 2px solid var(--ink); box-shadow: 7px 7px 0 var(--ink); border-radius: 12px; z-index: 2; }
-.scoreCard { right: 35px; top: 60px; width: 190px; padding: 20px; transform: rotate(6deg); display: grid; }
+.scoreCard { right: 35px; top: 0; width: 190px; padding: 20px; transform: rotate(6deg); display: grid; }
 .scoreCard span, .questionCard > span { font-size: 10px; letter-spacing: 1.5px; font-weight: 800; }
 .scoreCard strong { font: 900 60px/1 "League Spartan"; margin-top: 8px; }
 .scoreCard strong small { font-size: 20px; color: var(--muted); }
@@ -55,7 +62,7 @@ h1 em, h2 em { font-style: normal; color: var(--coral); }
 .questionCard div { border: 2px solid var(--ink); border-radius: 8px; padding: 10px; background: var(--lime); font-weight: 700; }
 .questionCard div i { font-style: normal; margin-right: 10px; }
 .questionCard div b { float: right; }
-.scribble { font-family: "Shadows Into Light"; font-size: 26px; position: absolute; right: 245px; bottom: 20px; transform: rotate(-8deg); }
+.scribble { font-family: "Shadows Into Light"; font-size: 26px; position: absolute; right: 245px; bottom: 20px; width: max-content; transform: rotate(-8deg); }
 .marquee { width: 100%; overflow: hidden; border-block: 2px solid var(--ink); background: var(--yellow); }
 .marquee div { width: max-content; padding: 14px 32px; font: 800 20px "League Spartan"; letter-spacing: 2px; }
 .manifesto { padding: 150px 0; display: grid; grid-template-columns: 1fr 3fr; gap: 60px; }
@@ -161,22 +168,25 @@ h1 em, h2 em { font-style: normal; color: var(--coral); }
 @media (min-width: 721px) and (max-width: 1024px) {
   .shell { width: min(100% - 64px, 900px); }
   .nav { height: 82px; }
-  .menuButton { display: block; cursor: pointer; }
+  .menuButton { display: flex; }
   .links { display: none; position: absolute; top: 74px; right: 0; width: 300px; background: var(--cream); border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 22px; flex-direction: column; align-items: stretch; gap: 8px; }
   .links.open { display: flex; }
+  .links a { padding: 13px 6px; }
   .links .pill { align-self: stretch; }
   .hero { min-height: 780px; padding-top: 70px; }
   .hero h1 { font-size: clamp(80px, 11.5vw, 112px); max-width: 760px; }
   .heroBottom { align-items: flex-start; flex-direction: column; gap: 26px; max-width: 430px; }
-  .scoreCard { right: 26px; top: 310px; scale: .88; }
-  .questionCard { right: 30px; bottom: 54px; }
-  .scribble { right: 275px; bottom: 34px; }
+  .heroVisual { width: 330px; height: 440px; right: 10px; top: 285px; }
+  .scoreCard { right: 5px; top: 0; scale: .88; }
+  .questionCard { right: 0; bottom: 20px; }
+  .scribble { right: 260px; bottom: 0; }
   .manifesto { grid-template-columns: 1fr 3fr; gap: 30px; padding-block: 120px; }
   .manifesto h2, .sectionHead h2, .how h2, .contribute h2, .cta h2 { font-size: clamp(58px, 8vw, 74px); }
   .subject { min-height: 140px; padding: 22px; }
   .subject strong { font-size: 24px; }
   .how { padding-block: 110px; }
-  .steps { gap: 26px; }
+  .steps { grid-template-columns: repeat(2, 1fr); gap: 26px; }
+  .steps article:last-child { grid-column: 1 / -1; max-width: calc(50% - 13px); }
   .contribute { grid-template-columns: .9fr 1.1fr; gap: 48px; padding-block: 120px; }
   .contributeArt { height: 460px; }
   .note.one { left: 24px; width: 250px; }
@@ -190,28 +200,40 @@ h1 em, h2 em { font-style: normal; color: var(--coral); }
 @media (max-width: 720px) {
   .shell { width: min(100% - 30px, 1160px); }
   .nav { height: 74px; }
-  .menuButton { display: block; cursor: pointer; }
-  .links { display: none; position: absolute; top: 68px; left: 0; right: 0; background: var(--cream); border: 2px solid var(--ink); padding: 20px; flex-direction: column; align-items: stretch; gap: 10px; }
+  .menuButton { display: flex; }
+  .links { display: none; position: absolute; top: 68px; left: 0; right: 0; background: var(--cream); border: 2px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); padding: 18px; flex-direction: column; align-items: stretch; gap: 4px; }
   .links.open { display: flex; }
+  .links a { padding: 14px 7px; font-size: 16px; }
   .links .pill { align-self: stretch; }
-  h1 { font-size: clamp(56px, 18vw, 84px); letter-spacing: -3px; }
-  .hero { min-height: 890px; padding-top: 50px; }
+  h1 { font-size: clamp(50px, 15vw, 72px); letter-spacing: -3px; }
+  .hero { min-height: 0; padding-top: 44px; padding-bottom: 54px; }
   .heroBottom > p { font-size: 16px; }
   .actions { align-items: flex-start; flex-direction: column; }
-  .scoreCard { top: auto; bottom: 210px; right: auto; left: 5px; }
-  .questionCard { width: min(270px, calc(100vw - 52px)); right: 6px; bottom: 28px; }
-  .scribble { display: none; }
-  .manifesto, .subjects, .contribute { padding-block: 100px; }
-  .manifesto h2, .sectionHead h2, .how h2, .contribute h2, .cta h2 { font-size: 54px; letter-spacing: -3px; }
+  .heroVisual { position: relative; inset: auto; width: 100%; height: 365px; margin-top: 48px; }
+  .scoreCard { top: 0; right: auto; left: 8px; width: 170px; padding: 17px; transform: rotate(-3deg); }
+  .scoreCard strong { font-size: 52px; }
+  .questionCard { width: min(285px, calc(100vw - 48px)); right: 7px; bottom: 8px; padding: 18px; transform: rotate(3deg); }
+  .scribble { display: block; right: 3px; top: 24px; bottom: auto; font-size: 23px; transform: rotate(7deg); }
+  .manifesto, .subjects, .contribute { padding-block: 88px; }
+  .manifesto { display: block; }
+  .manifesto > .sectionTag { margin-bottom: 24px; }
+  .manifesto h2, .sectionHead h2, .how h2, .contribute h2, .cta h2 { font-size: 50px; letter-spacing: -3px; }
+  .manifesto > div:last-child > p { margin-block: 28px 38px; }
   .statRow { gap: 12px; }
   .statRow strong { font-size: 34px; }
   .sectionHead, .howTitle { display: block; }
   .sectionHead > p, .howTitle p { margin-top: 28px; }
-  .subjectGrid, .steps, .contribute, .trustGrid, .footer { grid-template-columns: 1fr; }
-  .subject { min-height: 125px; padding: 20px; }
+  .subjectGrid { display: flex; gap: 14px; overflow-x: auto; margin-inline: -15px; padding: 4px 15px 18px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .subjectGrid::-webkit-scrollbar { display: none; }
+  .steps, .contribute, .trustGrid, .footer { grid-template-columns: 1fr; }
+  .subject { flex: 0 0 min(86vw, 340px); min-height: 148px; padding: 20px; scroll-snap-align: center; }
   .subject strong { font-size: 23px; }
+  .allSubjects { margin-top: 18px; }
   .how { padding-block: 100px; }
   .steps { gap: 24px; margin-top: 55px; }
+  .steps article { display: grid; grid-template-columns: 42px 1fr; column-gap: 8px; }
+  .steps h3 { margin: 0 0 9px; }
+  .steps p { grid-column: 2; margin: 0; }
   .contribute { gap: 65px; }
   .contributeArt { height: 430px; }
   .note.one { left: 20px; top: 55px; width: 255px; }
@@ -219,6 +241,8 @@ h1 em, h2 em { font-style: normal; color: var(--coral); }
   .trustGrid article { border-right: 0; border-bottom: 1px solid #aaa59d; }
   .trustGrid article:last-child { border-bottom: 0; }
   .footer { gap: 30px; }
+  .footer > div:not(.footerBrand) { border-top: 1px solid #c9c4bb; padding-top: 24px; }
+  .footer > small { margin-top: 8px; }
   .legalHero { padding: 64px 0 54px; }
   .legalHero h1 { font-size: clamp(52px, 16vw, 76px); }
   .legalHero > .shell > p { font-size: 16px; }
@@ -234,15 +258,17 @@ h1 em, h2 em { font-style: normal; color: var(--coral); }
   .shell { width: calc(100% - 24px); }
   .brand { font-size: 21px; }
   .brand img { width: 38px; height: 38px; }
-  h1 { font-size: clamp(50px, 17vw, 68px); }
-  .hero { min-height: 850px; padding-top: 38px; }
+  .hero h1 { font-size: clamp(44px, 14.5vw, 58px); }
+  .hero { min-height: 0; padding-top: 38px; }
   .heroBottom { margin-top: 28px; }
   .heroBottom > p { line-height: 1.5; }
   .pill { width: 100%; }
   .actions { width: 100%; }
-  .scoreCard { left: 2px; bottom: 200px; transform: rotate(3deg); }
-  .questionCard { right: 2px; bottom: 22px; transform: rotate(-2deg); }
-  .manifesto h2, .sectionHead h2, .how h2, .contribute h2, .cta h2 { font-size: 47px; }
+  .heroVisual { height: 350px; margin-top: 42px; }
+  .scoreCard { left: 2px; top: 0; transform: rotate(-3deg); }
+  .questionCard { right: 2px; bottom: 8px; transform: rotate(2deg); }
+  .scribble { right: 0; top: 12px; font-size: 20px; }
+  .manifesto h2, .sectionHead h2, .how h2, .contribute h2, .cta h2 { font-size: clamp(37px, 11.4vw, 43px); }
   .manifesto > div:last-child > p { font-size: 17px; }
   .statRow { grid-template-columns: 1fr; gap: 20px; }
   .statRow div { grid-template-columns: 60px 1fr; align-items: center; }

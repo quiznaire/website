@@ -31,14 +31,31 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [notice]);
 
+  useEffect(() => {
+    const closeMenu = (event) => {
+      if (event.key === "Escape") setMenu(false);
+    };
+
+    window.addEventListener("keydown", closeMenu);
+    return () => window.removeEventListener("keydown", closeMenu);
+  }, []);
+
   const comingSoon = (label) => setNotice(`${label} is coming soon. Stay curious!`);
 
   return (
     <main>
       <nav className="nav shell" aria-label="Primary navigation">
         <Brand href="#top" />
-        <button className="menuButton" onClick={() => setMenu(!menu)} aria-label="Toggle menu">☰</button>
-        <div className={`links ${menu ? "open" : ""}`}>
+        <button
+          className={`menuButton ${menu ? "active" : ""}`}
+          onClick={() => setMenu(!menu)}
+          aria-label={menu ? "Close menu" : "Open menu"}
+          aria-expanded={menu}
+          aria-controls="primary-links"
+        >
+          <span /><span /><span />
+        </button>
+        <div className={`links ${menu ? "open" : ""}`} id="primary-links">
           <a href="#how" onClick={() => setMenu(false)}>How it works</a>
           <a href="#subjects" onClick={() => setMenu(false)}>Subjects</a>
           <a href="#contribute" onClick={() => setMenu(false)}>Contribute</a>
@@ -56,15 +73,17 @@ export default function Home() {
             <a className="textLink" href="#contribute">Contribute a question <span>↓</span></a>
           </div>
         </div>
-        <div className="scoreCard tiltOne">
-          <span>LIVE SCORE</span><strong>12<small>/15</small></strong><b>Great run!</b>
+        <div className="heroVisual" aria-label="Quiz preview">
+          <div className="scoreCard tiltOne">
+            <span>LIVE SCORE</span><strong>12<small>/15</small></strong><b>Great run!</b>
+          </div>
+          <div className="questionCard tiltTwo">
+            <span>PHYSICS · 08</span>
+            <p>Which quantity stays constant in uniform circular motion?</p>
+            <div><i>A</i> Speed <b>✓</b></div>
+          </div>
+          <div className="scribble">Think fast!</div>
         </div>
-        <div className="questionCard tiltTwo">
-          <span>PHYSICS · 08</span>
-          <p>Which quantity stays constant in uniform circular motion?</p>
-          <div><i>A</i> Speed <b>✓</b></div>
-        </div>
-        <div className="scribble">Think fast!</div>
       </section>
 
       <section className="marquee" aria-label="Quiznaire highlights">
