@@ -64,7 +64,7 @@ export default function Home() {
       </nav>
 
       <section className="hero shell" id="top">
-        <div className="eyebrow"><i /> Built for curious minds</div>
+        <div className="eyebrow"><i /> Empowering Talent &amp; Rewarding Knowledge</div>
         <h1>KNOW IT.<br /><em>SHOW IT.</em><br />GROW WITH IT.</h1>
         <div className="heroBottom">
           <p>Quick-fire quizzes. Original questions. One growing community where knowledge gets the spotlight.</p>

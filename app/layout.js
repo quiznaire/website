@@ -2,7 +2,7 @@ import "./globals.css";
 
 export const metadata = {
   metadataBase: new URL("https://quiznaire.in"),
-  title: "Quiznaire — Knowledge has its rewards",
+  title: "Quiznaire — Empowering Talent & Rewarding Knowledge",
   description: "Play live quizzes, test what you know, and contribute original questions to a growing knowledge community.",
   creator: "Powerpage Education Private Limited",
   publisher: "Powerpage Education Private Limited",
@@ -10,7 +10,7 @@ export const metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Quiznaire — Knowledge has its rewards",
+    title: "Quiznaire — Empowering Talent & Rewarding Knowledge",
     description: "Play live quizzes, test what you know, and contribute original questions to a growing knowledge community.",
     url: "https://quiznaire.in",
     siteName: "Quiznaire",
@@ -24,6 +24,7 @@ export default function RootLayout({ children }) {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Powerpage Education Private Limited",
+    slogan: "Empowering Talent & Rewarding Knowledge",
     url: "https://powerpageedu.com",
     brand: {
       "@type": "Brand",
