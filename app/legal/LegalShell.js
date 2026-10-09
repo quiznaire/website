@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Brand from "../Brand";
+import ThemeToggle from "../ThemeToggle";
 
 export default function LegalShell({ eyebrow, title, intro, lastUpdated = "23 July 2026", children }) {
   return (
     <main className="legalPage">
       <nav className="nav shell legalNav" aria-label="Legal page navigation">
         <Brand />
-        <Link className="legalBack" href="/">← Back to home</Link>
+        <div className="navActions"><ThemeToggle /><Link className="legalBack" href="/">← Back to home</Link></div>
       </nav>
 
       <header className="legalHero">
