@@ -2,7 +2,7 @@ import LegalShell from "../legal/LegalShell";
 
 export const metadata = {
   title: "Terms & Conditions — Quiznaire",
-  description: "The rules governing Quiznaire accounts, quiz contests, prizes and question contributions.",
+  description: "The rules governing Quiznaire accounts, quiz contests, prizes and question submissions.",
 };
 
 export default function TermsPage() {
@@ -10,13 +10,13 @@ export default function TermsPage() {
     <LegalShell
       eyebrow="Platform rules"
       title="TERMS & CONDITIONS"
-      intro="These terms govern your access to Quiznaire, including accounts, paid quiz contests, prizes, wallets and question-bank contributions."
+      intro="These terms govern your access to Quiznaire, including accounts, paid quiz contests, prizes, wallets and question submissions."
       lastUpdated="1 August 2026"
     >
       <section id="overview">
         <span className="legalNumber">01</span>
         <h2>Who we are</h2>
-        <p>Quiznaire is a flagship brand of <a href="https://powerpageedu.com">Powerpage Education Private Limited</a>. The platform offers subject-based online quiz contests in which eligible participants may win cash prizes. It also allows users to submit original questions for review and possible inclusion in the Quiznaire question bank and to earn the displayed contribution amount for accepted questions.</p>
+        <p>Quiznaire is a flagship brand of <a href="https://powerpageedu.com">Powerpage Education Private Limited</a>. The platform offers subject-based online quiz contests in which eligible participants may win cash prizes. Users may also submit original questions for review and possible inclusion in the Quiznaire question bank.</p>
         <p>Available subjects may include Physics, Chemistry, Biology, Hindi, History, General Knowledge, Social Science and Political Science. Subjects and services may change over time.</p>
       </section>
 
@@ -75,17 +75,15 @@ export default function TermsPage() {
         <p>Submitted questions pass through a review and duplication-checking process before they are accepted or rejected. To qualify, a question should be original, conceptual, objective, accurate, clearly written and assigned to the correct subject and difficulty level. Questions requiring lengthy or complicated numerical calculations may be rejected.</p>
         <ul>
           <li>A question must be unique to the Quiznaire question bank</li>
-          <li>The same question will not be paid more than once</li>
-          <li>Only unique and accepted questions qualify for the contribution rate displayed by Quiznaire</li>
-          <li>Quiznaire may change the contribution rate and review criteria prospectively</li>
-          <li>Submitting a question does not guarantee acceptance or payment</li>
+          <li>Submitting a question does not guarantee acceptance or inclusion</li>
+          <li>Quiznaire may change the review criteria prospectively</li>
         </ul>
       </section>
 
       <section>
         <span className="legalNumber">09</span>
         <h2>Wallets and withdrawals</h2>
-        <p>Your Quiznaire wallet may separately reflect deposits, quiz prizes and approved-question earnings. Deposits, withdrawals and transfers may be subject to payment-provider rules, verification, processing times, minimum thresholds, taxes and applicable law.</p>
+        <p>Your Quiznaire wallet may reflect deposits and quiz prizes. Deposits, withdrawals and transfers may be subject to payment-provider rules, verification, processing times, minimum thresholds, taxes and applicable law.</p>
         <p>You must provide correct bank or UPI details. Quiznaire is not responsible for delays or losses caused by incorrect payment details supplied by you, payment-network failures or legally required reviews.</p>
       </section>
 
@@ -99,7 +97,7 @@ export default function TermsPage() {
       <section>
         <span className="legalNumber">11</span>
         <h2>Availability and changes</h2>
-        <p>Features, subjects, contest formats, schedules, contribution rates and platform fees may change. Quiznaire may modify, suspend or discontinue a service and may update these Terms. Material changes will be posted or communicated through the platform as appropriate.</p>
+        <p>Features, subjects, contest formats, schedules, question-review criteria and platform fees may change. Quiznaire may modify, suspend or discontinue a service and may update these Terms. Material changes will be posted or communicated through the platform as appropriate.</p>
       </section>
 
       <section id="contact">

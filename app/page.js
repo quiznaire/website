@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Brand from "./Brand";
 import QuizDemo from "./QuizDemo";
-import ThemeToggle from "./ThemeToggle";
 
 const subjects = [
   ["Physics", "⚛", "Forces, motion & more", "blue"],
@@ -44,7 +43,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const elements = document.querySelectorAll(".manifesto, .sectionHead, .subject, .howTitle, .steps article, .contributeArt, .contributeCopy, .trustGrid article, .cta .shell");
+    const elements = document.querySelectorAll(".manifesto, .about, .sectionHead, .subject, .howTitle, .steps article, .contributeArt, .contributeCopy, .trustGrid article, .cta .shell");
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -60,11 +59,10 @@ export default function Home() {
   const comingSoon = (label) => setNotice(`${label} is coming soon. Stay curious!`);
 
   return (
-    <main>
+    <main id="main-content">
       <nav className="nav shell" aria-label="Primary navigation">
         <Brand href="#top" />
         <div className="navActions">
-        <ThemeToggle />
         <button
           className={`menuButton ${menu ? "active" : ""}`}
           onClick={() => setMenu(!menu)}
@@ -76,6 +74,7 @@ export default function Home() {
         </button>
         <div className={`links ${menu ? "open" : ""}`} id="primary-links">
           <a href="#how" onClick={() => setMenu(false)}>How it works</a>
+          <a href="#about" onClick={() => setMenu(false)}>About</a>
           <a href="#subjects" onClick={() => setMenu(false)}>Subjects</a>
           <a href="#contribute" onClick={() => setMenu(false)}>Contribute</a>
           <button className="pill dark small" onClick={() => comingSoon("The Quiznaire app")}>Get the app <Arrow /></button>
@@ -88,12 +87,12 @@ export default function Home() {
         <div className="eyebrow"><i /> For curious minds. And competitive spirits.</div>
         <h1>Knowledge is<br /><em>worth showing.</em></h1>
         <div className="heroBottom">
-          <p>Put your knowledge in play. Compete in subject quizzes for rewards, or contribute original questions and earn when they’re accepted.</p>
+          <p>Put your knowledge in play. Compete in subject quizzes, sharpen what you know and play for the rewards on offer.</p>
           <div className="actions">
             <a className="pill blue" href="#try-quiz">Try a free mini quiz <Arrow /></a>
             <a className="textLink" href="#contribute">Contribute a question <span>↓</span></a>
           </div>
-          <div className="heroChips"><span>✦ Play to challenge yourself</span><span>↗ Create questions. Earn rewards.</span></div>
+          <div className="heroChips"><span>✦ Play to challenge yourself</span><span>↗ Great quizzes start with great questions.</span></div>
         </div>
         </div>
         <QuizDemo />
@@ -113,6 +112,22 @@ export default function Home() {
             <div><strong>1</strong><span>question at a time</span></div>
             <div><strong>∞</strong><span>reasons to stay curious</span></div>
           </div>
+        </div>
+      </section>
+
+      <section className="about shell" id="about">
+        <div className="aboutIntro">
+          <div className="sectionTag">About Quiznaire</div>
+          <h2>Made for people who<br /><em>love a good question.</em></h2>
+        </div>
+        <div className="aboutCopy">
+          <p>Quiznaire is a home for curious minds and competitive spirits. We create thoughtful, subject-led quiz experiences that make learning feel lively, social and worth showing up for.</p>
+          <p>Whether you are revising a favourite subject or testing your instincts under pressure, every round gives you a reason to learn something new.</p>
+        </div>
+        <div className="aboutValues">
+          <article><span>01</span><h3>Curiosity first</h3><p>Questions that invite you to think, connect ideas and keep exploring.</p></article>
+          <article><span>02</span><h3>Fair competition</h3><p>Clear rules, focused formats and a level playing field for every quiz.</p></article>
+          <article><span>03</span><h3>Learning in motion</h3><p>Small moments of discovery that stay with you after the round ends.</p></article>
         </div>
       </section>
 
@@ -162,11 +177,11 @@ export default function Home() {
         <div className="contributeCopy">
           <div className="sectionTag">Know a great question?</div>
           <h2>A good question<br /><em>deserves a life.</em></h2>
-          <p>Submit original, conceptual questions to the Quiznaire question bank. Every contribution is checked for clarity, accuracy and uniqueness. Accepted questions earn the contribution amount displayed in the app.</p>
+          <p>Submit original, conceptual questions to the Quiznaire question bank. Every contribution is reviewed for clarity, accuracy and uniqueness so that each quiz stays fresh, fair and rewarding to play.</p>
           <ul>
             <li><span>01</span> Write an original objective question</li>
             <li><span>02</span> Add the answer, subject and difficulty</li>
-            <li><span>03</span> Earn the displayed amount when accepted</li>
+            <li><span>03</span> Help shape future Quiznaire rounds</li>
           </ul>
           <button className="pill blue" onClick={() => comingSoon("Question submissions")}>Start contributing <Arrow /></button>
         </div>
@@ -177,14 +192,14 @@ export default function Home() {
         <div className="trustGrid">
           <article><span>01</span><h3>Clear before you enter</h3><p>See the timing, format, entry details and prize structure for every quiz upfront.</p></article>
           <article><span>02</span><h3>Concepts over calculators</h3><p>Focused, time-bound questions reward understanding and quick recall.</p></article>
-          <article><span>03</span><h3>Everything in one wallet</h3><p>Track quiz rewards and approved-question earnings with a transparent history.</p></article>
+          <article><span>03</span><h3>Everything in one wallet</h3><p>Track your quiz rewards and winnings with a clear, transparent history.</p></article>
         </div>
       </section>
 
       <section className="cta">
         <div className="shell">
           <span className="miniBurst">READY?</span>
-          <h2>Your next<br /><em>question</em><br />is waiting.</h2>
+          <h2>Your next question<br /><em>is waiting.</em></h2>
           <p>Quiznaire is getting ready for launch. Until then, give your curiosity a workout with our free mini quiz.</p>
           <a className="pill lightPill" href="#try-quiz">Put me to the test <Arrow /></a>
         </div>
@@ -196,7 +211,7 @@ export default function Home() {
           <p>A learning and quiz platform by <a href="https://powerpageedu.com">Powerpage Education Private Limited</a>.</p>
         </div>
         <div><strong>Explore</strong><a href="#how">How it works</a><a href="#subjects">Subjects</a><a href="#contribute">Contribute</a></div>
-        <div><strong>Company</strong><button onClick={() => comingSoon("About Quiznaire")}>About</button><button onClick={() => comingSoon("Help centre")}>Help & support</button></div>
+        <div><strong>Company</strong><a href="#about">About</a><button onClick={() => comingSoon("Help centre")}>Help & support</button></div>
         <div><strong>Legal</strong><Link href="/terms">Terms &amp; Conditions</Link><Link href="/privacy">Privacy Policy</Link></div>
         <small>© 2026 <a href="https://powerpageedu.com">Powerpage Education Pvt. Ltd.</a> All rights reserved.</small>
       </footer>

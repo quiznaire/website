@@ -43,7 +43,7 @@ export default function PrivacyPage() {
         <h2>How we use information</h2>
         <ul>
           <li>Create, maintain and secure your account</li>
-          <li>Operate quizzes, question submissions, wallets, rewards and withdrawals</li>
+          <li>Operate quizzes, question submissions, wallets, quiz rewards and withdrawals</li>
           <li>Verify identity, eligibility and winners, including KYC where required</li>
           <li>Prevent duplicate questions, fraud, misuse and security incidents</li>
           <li>Respond to feedback, support requests and account-deletion requests</li>

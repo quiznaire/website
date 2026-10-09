@@ -3,7 +3,7 @@ import "./globals.css";
 export const metadata = {
   metadataBase: new URL("https://quiznaire.in"),
   title: "Quiznaire — Empowering Talent & Rewarding Knowledge",
-  description: "Play live quizzes, test what you know, and contribute original questions to a growing knowledge community.",
+  description: "Play subject-led quizzes, test what you know and compete for the rewards on offer.",
   creator: "Powerpage Education Private Limited",
   publisher: "Powerpage Education Private Limited",
   alternates: {
@@ -11,7 +11,7 @@ export const metadata = {
   },
   openGraph: {
     title: "Quiznaire — Empowering Talent & Rewarding Knowledge",
-    description: "Play live quizzes, test what you know, and contribute original questions to a growing knowledge community.",
+    description: "Play subject-led quizzes, test what you know and compete for the rewards on offer.",
     url: "https://quiznaire.in",
     siteName: "Quiznaire",
     images: ["/logo.png"],
@@ -34,11 +34,13 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `try { const theme = localStorage.getItem('quiznaire-theme'); if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme; } catch {}` }} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body>
+        <a className="skipLink" href="#main-content">Skip to content</a>
         {children}
         <script
           type="application/ld+json"
