@@ -39,7 +39,7 @@ export default function QuizDemo() {
     <div className="heroVisual" id="try-quiz">
       <div className="demoSticker" aria-hidden="true">Your turn ↘</div>
       <div className="quizPreview">
-        <div className="quizPreviewTop"><span><i className="liveDot" /> Free mini quiz</span><b>No sign-up needed</b></div>
+        <div className="quizPreviewTop"><span><i className="liveDot" /> Free mini quiz</span><b>Sign up to play</b></div>
         <div className="quizProgress" aria-hidden="true"><i style={{ width: `${(finished ? 4 : index + 1) / 4 * 100}%` }} /></div>
         {finished ? (
           <div className="demoResult">

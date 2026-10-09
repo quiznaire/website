@@ -10,13 +10,13 @@ export default function PrivacyPage() {
     <LegalShell
       eyebrow="Your privacy"
       title="PRIVACY POLICY"
-      intro="This policy explains how Quiznaire handles information when you visit the platform, create an account, enter a quiz contest or contribute a question."
+      intro="This policy explains how Quiznaire handles information when you visit the platform, create an account or enter a quiz contest."
       lastUpdated="1 August 2026"
     >
       <section id="overview">
         <span className="legalNumber">01</span>
         <h2>About this policy</h2>
-        <p>Quiznaire is a flagship brand of <a href="https://powerpageedu.com">Powerpage Education Private Limited</a>. We provide online quiz contests and maintain a question bank to which users may submit original questions. Anyone using the platform or its features is covered by this Privacy Policy.</p>
+        <p>Quiznaire is a flagship brand of <a href="https://powerpageedu.com">Powerpage Education Private Limited</a>. We provide online quiz contests for curious and competitive learners. Anyone using the platform or its features is covered by this Privacy Policy.</p>
         <p>We respect our users&apos; privacy and aim to protect personal information while providing a useful, secure and engaging experience. Some services may be available without payment, but registration is required for features such as participating in contests.</p>
         <p>Capitalised terms not defined in this policy have the meanings given to them in our <a href="/terms">Terms &amp; Conditions</a>.</p>
       </section>
@@ -32,7 +32,7 @@ export default function PrivacyPage() {
           <li>Government identification, such as Aadhaar, driving licence or voter ID, where verification is required</li>
           <li>PAN and other information required for legal, tax or winner-verification purposes</li>
           <li>Bank, UPI, wallet and payment details needed to process deposits, withdrawals or prizes</li>
-          <li>Questions, feedback and support messages you submit</li>
+          <li>Feedback and support messages you submit</li>
         </ul>
         <h3>Information collected through use</h3>
         <p>This may include device and operating-system information, IP address, network information, approximate location, platform activity and cookie or similar identifier data. Where a feature requests access to information such as the apps installed on your device, that access is optional and will be subject to your permission.</p>
@@ -43,9 +43,9 @@ export default function PrivacyPage() {
         <h2>How we use information</h2>
         <ul>
           <li>Create, maintain and secure your account</li>
-          <li>Operate quizzes, question submissions, wallets, quiz rewards and withdrawals</li>
+          <li>Operate quizzes, wallets, quiz rewards and withdrawals</li>
           <li>Verify identity, eligibility and winners, including KYC where required</li>
-          <li>Prevent duplicate questions, fraud, misuse and security incidents</li>
+          <li>Prevent fraud, misuse and security incidents</li>
           <li>Respond to feedback, support requests and account-deletion requests</li>
           <li>Analyse and improve the platform, features and user experience</li>
           <li>Send service, account, contest and other communications permitted by law</li>

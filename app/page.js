@@ -43,7 +43,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const elements = document.querySelectorAll(".manifesto, .about, .sectionHead, .subject, .howTitle, .steps article, .contributeArt, .contributeCopy, .trustGrid article, .cta .shell");
+    const elements = document.querySelectorAll(".manifesto, .about, .sectionHead, .subject, .howTitle, .steps article, .trustGrid article, .cta .shell");
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -76,7 +76,6 @@ export default function Home() {
           <a href="#how" onClick={() => setMenu(false)}>How it works</a>
           <a href="#about" onClick={() => setMenu(false)}>About</a>
           <a href="#subjects" onClick={() => setMenu(false)}>Subjects</a>
-          <a href="#contribute" onClick={() => setMenu(false)}>Contribute</a>
           <button className="pill dark small" onClick={() => comingSoon("The Quiznaire app")}>Get the app <Arrow /></button>
         </div>
         </div>
@@ -90,7 +89,7 @@ export default function Home() {
           <p>Put your knowledge in play. Compete in subject quizzes, sharpen what you know and play for the rewards on offer.</p>
           <div className="actions">
             <a className="pill blue" href="#try-quiz">Try a free mini quiz <Arrow /></a>
-            <a className="textLink" href="#contribute">Contribute a question <span>↓</span></a>
+            <a className="textLink" href="#how">See how it works <span>↓</span></a>
           </div>
           <div className="heroChips"><span>✦ Play to challenge yourself</span><span>↗ Great quizzes start with great questions.</span></div>
         </div>
@@ -99,14 +98,24 @@ export default function Home() {
       </section>
 
       <section className="marquee" aria-label="Quiznaire highlights">
-        <div className="marqueeTrack" aria-hidden="true">{[0, 1].map((n) => <span key={n}>PLAY <i>✦</i> LEARN <i>✦</i> CONTRIBUTE <i>✦</i> GROW <i>✦</i> STAY CURIOUS <i>✦</i> </span>)}</div>
+        <div className="marqueeRing" aria-hidden="true">
+          <svg viewBox="0 0 300 300" role="presentation">
+            <defs>
+              <path id="quiznaire-ring-path" d="M150,150 m-112,0 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0" />
+            </defs>
+            <text>
+              <textPath href="#quiznaire-ring-path">PLAY ✦ LEARN ✦ COMPETE ✦ GROW ✦ STAY CURIOUS ✦ </textPath>
+            </text>
+          </svg>
+          <span>Q</span>
+        </div>
       </section>
 
       <section className="manifesto shell">
         <div className="sectionTag">Why Quiznaire</div>
         <div>
           <h2>Let what you know<br /><em>take you further.</em></h2>
-          <p>Quiznaire turns what you know into momentum. Compete in subject-based quizzes, build sharper recall and help create a fresh question bank for learners across India.</p>
+          <p>Quiznaire turns what you know into momentum. Compete in subject-based quizzes, build sharper recall and discover something new in every round.</p>
           <div className="statRow">
             <div><strong>8+</strong><span>subjects on the horizon</span></div>
             <div><strong>1</strong><span>question at a time</span></div>
@@ -168,25 +177,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="contribute shell" id="contribute">
-        <div className="contributeArt">
-          <div className="note one"><span>YOUR IDEA</span><p>What happens to pressure when volume decreases?</p></div>
-          <div className="note two"><b>UNIQUE?</b><strong>✓</strong><small>Ready for review</small></div>
-          <div className="orbit">?</div>
-        </div>
-        <div className="contributeCopy">
-          <div className="sectionTag">Know a great question?</div>
-          <h2>A good question<br /><em>deserves a life.</em></h2>
-          <p>Submit original, conceptual questions to the Quiznaire question bank. Every contribution is reviewed for clarity, accuracy and uniqueness so that each quiz stays fresh, fair and rewarding to play.</p>
-          <ul>
-            <li><span>01</span> Write an original objective question</li>
-            <li><span>02</span> Add the answer, subject and difficulty</li>
-            <li><span>03</span> Help shape future Quiznaire rounds</li>
-          </ul>
-          <button className="pill blue" onClick={() => comingSoon("Question submissions")}>Start contributing <Arrow /></button>
-        </div>
-      </section>
-
       <section className="trust shell">
         <div className="sectionTag">Made for fair play</div>
         <div className="trustGrid">
@@ -210,7 +200,7 @@ export default function Home() {
           <Brand href="#top" />
           <p>A learning and quiz platform by <a href="https://powerpageedu.com">Powerpage Education Private Limited</a>.</p>
         </div>
-        <div><strong>Explore</strong><a href="#how">How it works</a><a href="#subjects">Subjects</a><a href="#contribute">Contribute</a></div>
+        <div><strong>Explore</strong><a href="#how">How it works</a><a href="#subjects">Subjects</a><a href="#about">About</a></div>
         <div><strong>Company</strong><a href="#about">About</a><button onClick={() => comingSoon("Help centre")}>Help & support</button></div>
         <div><strong>Legal</strong><Link href="/terms">Terms &amp; Conditions</Link><Link href="/privacy">Privacy Policy</Link></div>
         <small>© 2026 <a href="https://powerpageedu.com">Powerpage Education Pvt. Ltd.</a> All rights reserved.</small>
