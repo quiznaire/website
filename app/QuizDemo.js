@@ -77,6 +77,26 @@ export default function QuizDemo({
         >
           <i style={{ width: `${(answers.length / count) * 100}%` }} />
         </div>
+        <div className="quizStages" aria-hidden="true">
+          {questions.map((item, stage) => (
+            <span
+              key={item.subject}
+              className={
+                stage < answers.length
+                  ? "complete"
+                  : stage === index && !finished
+                    ? "current"
+                    : ""
+              }
+            >
+              <i>
+                {stage < answers.length
+                  ? "✓"
+                  : String(stage + 1).padStart(2, "0")}
+              </i>
+            </span>
+          ))}
+        </div>
         {finished ? (
           <div className="demoResult">
             <span className="resultEyebrow">ROUND COMPLETE</span>
