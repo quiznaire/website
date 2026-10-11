@@ -65,7 +65,6 @@ export default function QuizDemo({
           <span>
             <i className="liveDot" aria-hidden="true" /> Free mini quiz
           </span>
-          <span className="quizAccountNote">No sign-up needed</span>
         </div>
         <div
           className="quizProgress"
