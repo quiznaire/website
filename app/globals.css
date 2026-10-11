@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap");
 :root {
   color-scheme: light;
   --ink: #132b46;
@@ -1411,5 +1411,712 @@ em {
   *:after {
     animation: none !important;
     transition: none !important;
+  }
+}
+/* Quiznaire's practice notebook: ink drawings, ruled pages and margin notes. */
+.handNote {
+  font:
+    500 25px/1.1 "Caveat",
+    cursive;
+  letter-spacing: 0;
+  color: var(--brand);
+}
+.editionDot {
+  height: 7px;
+  width: 7px;
+  border: 1px solid var(--brand);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+}
+.hero {
+  position: relative;
+  gap: 82px;
+  padding-block: 95px 115px;
+  grid-template-columns: 1.12fr 1fr;
+}
+.hero h1 {
+  font-size: clamp(54px, 5.8vw, 80px);
+  letter-spacing: -0.055em;
+  line-height: 1.08;
+}
+.hero h1 em {
+  position: relative;
+  display: inline-block;
+}
+.hero h1 em:after {
+  content: "";
+  position: absolute;
+  left: 1%;
+  right: 0;
+  bottom: -10px;
+  height: 9px;
+  border-top: 2px solid #6a99c8;
+  border-radius: 50%;
+  transform: rotate(-2deg);
+}
+.hero .eyebrow {
+  margin-bottom: 30px;
+  font-size: 9px;
+}
+.heroCopy > p {
+  max-width: 415px;
+  margin-top: 27px;
+}
+.heroEdition {
+  margin-top: 42px;
+  border: 0;
+  padding-top: 0;
+  font-size: 7px;
+  letter-spacing: 0.06em;
+  color: #587b9f;
+}
+.heroExperience {
+  position: relative;
+  border: 1px solid #a7c1dc;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 31px,
+      #d6e6f5 32px
+    ),
+    #eef5fc;
+  padding: 28px 25px 18px 33px;
+  box-shadow: 7px 7px 0 #e6f0fa;
+  transform: rotate(1deg);
+}
+.heroExperience:before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  border-left: 1px solid #a7c1dc;
+}
+.heroExperience:after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: -1px;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(45deg, #d0e1f1 50%, white 51%);
+  border-left: 1px solid #a7c1dc;
+  border-bottom: 1px solid #a7c1dc;
+}
+.notebookSpine {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  left: -10px;
+  top: 35px;
+  bottom: 35px;
+  width: 20px;
+}
+.notebookSpine i {
+  display: block;
+  width: 20px;
+  height: 11px;
+  border: 1.5px solid var(--brand);
+  border-right-color: transparent;
+  border-radius: 6px;
+}
+.heroHandNote {
+  position: absolute;
+  right: 12px;
+  top: -37px;
+  transform: rotate(-4deg);
+  font-size: 25px;
+}
+.heroHandNote:after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-right: 1.5px solid var(--brand);
+  border-bottom: 1.5px solid var(--brand);
+  right: 10px;
+  bottom: -16px;
+  border-radius: 0 0 14px 0;
+  transform: rotate(15deg);
+}
+.heroExperience .quizPreview {
+  transform: rotate(-1deg);
+  border-color: #c4d6e9;
+  background: #fffffffa;
+}
+.paperHeading {
+  font-size: 8px;
+  margin-bottom: 16px;
+}
+.paperCaption {
+  font-family: "Caveat", cursive;
+  font-size: 20px;
+  color: var(--brand);
+  margin-top: 14px;
+}
+.heroSketches {
+  position: absolute;
+  left: 120px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+  opacity: 0.65;
+}
+.heroSketches > .subjectSketch {
+  width: 94px;
+  height: 94px;
+  color: var(--brand);
+  transform: rotate(-8deg);
+}
+.heroSketches > .subjectSketch:last-child {
+  width: 78px;
+  height: 78px;
+  transform: rotate(15deg);
+  margin-left: 80px;
+}
+.sketchCaption {
+  font:
+    400 18px "Caveat",
+    cursive;
+  color: var(--brand);
+  transform: rotate(-7deg);
+  margin-left: -15px;
+  margin-top: 25px;
+}
+.subjects {
+  display: block;
+  padding-block: 62px 42px;
+}
+.subjectIntro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  padding-top: 0;
+  margin-bottom: 40px;
+}
+.subjectIntro h2 {
+  font-size: 48px;
+}
+.subjectIntro .sectionTag {
+  font-size: 9px;
+  margin-bottom: 19px;
+}
+.subjectIntro > p {
+  max-width: 300px;
+  font-size: 12px;
+  line-height: 1.85;
+  margin: 0;
+}
+.subjectList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.subject {
+  position: relative;
+  gap: 10px;
+  padding: 32px 25px 34px 12px;
+  min-height: 238px;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+}
+.subject:nth-child(odd) {
+  border-right: 1px solid var(--line);
+}
+.subject:nth-child(even) {
+  padding-left: 32px;
+}
+.subject:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+.subject:hover {
+  background: #f4f8fc;
+}
+.subjectNumber {
+  position: absolute;
+  left: 17px;
+  top: 20px;
+  font:
+    400 11px "DM Sans",
+    sans-serif;
+  color: #6d89a5;
+  min-width: auto;
+  padding: 0;
+}
+.subject:nth-child(even) .subjectNumber {
+  left: 32px;
+}
+.subjectSketch {
+  width: 155px;
+  height: 155px;
+  flex-shrink: 0;
+  color: var(--brand);
+  transition: transform 0.35s ease;
+}
+.subject:hover > .subjectSketch {
+  transform: rotate(-5deg) translateY(-3px);
+}
+.subject02 > .subjectSketch {
+  transform: rotate(6deg);
+}
+.subject03 > .subjectSketch {
+  transform: rotate(-5deg);
+}
+.subjectBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.subjectTitle {
+  font-size: 31px;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+.subjectTopic {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #66819a;
+}
+.subjectSample {
+  font-size: 11px;
+  line-height: 1.8;
+  max-width: 235px;
+  margin-top: 2px;
+}
+.subjectTry {
+  display: inline-flex;
+  gap: 18px;
+  font-size: 11px;
+  color: var(--brand);
+  margin-top: 12px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.subjectPostscript {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  margin-top: 20px;
+  transform: rotate(-1deg);
+}
+.subjectPostscript > .handNote {
+  font-size: 23px;
+}
+.subjectPostscript > span:last-child {
+  font-size: 10px;
+  color: var(--muted);
+}
+.how {
+  margin-bottom: 62px;
+  border-top: 0;
+  padding-top: 10px;
+}
+.howHeading {
+  margin-bottom: 25px;
+}
+.steps article > span {
+  font-family: "Caveat", cursive;
+  font-size: 37px;
+  color: var(--brand);
+}
+.aboutLayout {
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 90px;
+  padding-block: 58px 55px;
+}
+.aboutHeading {
+  position: relative;
+}
+.about h2 {
+  font-size: 55px;
+}
+.aboutDrawing {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 18px;
+  height: 94px;
+}
+.aboutDrawing > .subjectSketch {
+  width: 110px;
+  height: 110px;
+  color: #a8c9e7;
+  transform: rotate(-10deg);
+}
+.aboutDrawing > .handNote {
+  color: #c4dff8;
+  transform: rotate(-6deg);
+  font-size: 25px;
+  max-width: 170px;
+}
+.aboutByline {
+  margin-top: 18px;
+}
+.aboutCopy > p {
+  font-size: 14px;
+}
+.faqIntro {
+  position: relative;
+}
+.faqIntro:after {
+  content: "?";
+  font:
+    400 92px "Caveat",
+    cursive;
+  position: absolute;
+  left: 195px;
+  top: 55px;
+  color: #a8c2dc;
+  transform: rotate(14deg);
+}
+.footerTop > p {
+  font-family: "Caveat", cursive;
+  font-size: 22px;
+}
+@media (max-width: 1050px) {
+  .hero {
+    gap: 43px;
+  }
+  .hero h1 {
+    font-size: 65px;
+  }
+  .heroSketches {
+    left: 55px;
+  }
+  .subject {
+    padding-right: 20px;
+  }
+  .subjectSketch {
+    width: 125px;
+    height: 125px;
+  }
+  .subjectTitle {
+    font-size: 28px;
+  }
+  .subjectBody {
+    gap: 6px;
+  }
+  .subjectTopic {
+    font-size: 7px;
+  }
+  .subjectSample {
+    font-size: 10px;
+  }
+  .subjectIntro h2 {
+    font-size: 43px;
+  }
+  .aboutLayout {
+    gap: 55px;
+  }
+  .about h2 {
+    font-size: 48px;
+  }
+}
+@media (max-width: 800px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-block: 50px 50px;
+    gap: 56px;
+  }
+  .hero h1 {
+    font-size: clamp(54px, 9vw, 73px);
+  }
+  .heroCopy > p {
+    max-width: 500px;
+  }
+  .heroEdition {
+    margin-top: 27px;
+  }
+  .heroSketches {
+    left: auto;
+    right: 0;
+    top: 70px;
+    bottom: auto;
+    flex-direction: column;
+    gap: 0;
+    opacity: 0.45;
+  }
+  .heroSketches > .subjectSketch:last-child {
+    display: none;
+  }
+  .heroSketches > .subjectSketch {
+    width: 105px;
+    height: 105px;
+  }
+  .heroSketches > .sketchCaption {
+    max-width: 100px;
+    font-size: 16px;
+    margin: 0;
+  }
+  .heroExperience {
+    max-width: 560px;
+    width: calc(100% - 16px);
+    padding: 25px 22px 17px 29px;
+    justify-self: center;
+  }
+  .subjectIntro {
+    align-items: flex-start;
+    gap: 30px;
+  }
+  .subjectIntro h2 {
+    font-size: 40px;
+  }
+  .subjectIntro > p {
+    max-width: 220px;
+    font-size: 11px;
+    padding-top: 35px;
+  }
+  .subjectList {
+    grid-template-columns: 1fr;
+  }
+  .subject:nth-child(odd) {
+    border-right: 0;
+  }
+  .subject:nth-child(even) {
+    padding-left: 12px;
+  }
+  .subject:nth-child(even) .subjectNumber {
+    left: 17px;
+  }
+  .subject:nth-last-child(2) {
+    border-bottom: 1px solid var(--line);
+  }
+  .subject {
+    min-height: 190px;
+    padding-block: 30px 25px;
+    gap: 24px;
+  }
+  .subjectSketch {
+    width: 150px;
+    height: 150px;
+  }
+  .subjectTitle {
+    font-size: 35px;
+  }
+  .subjectTopic {
+    font-size: 9px;
+  }
+  .subjectSample {
+    font-size: 12px;
+    max-width: 350px;
+  }
+  .subjectTry {
+    margin-top: 7px;
+  }
+  .subjectPostscript {
+    justify-content: center;
+    gap: 15px;
+  }
+  .subjectPostscript > span:last-child {
+    font-size: 9px;
+  }
+  .how {
+    margin-bottom: 50px;
+  }
+  .aboutLayout {
+    gap: 35px;
+    padding-block: 50px;
+  }
+  .about h2 {
+    font-size: 43px;
+  }
+  .aboutDrawing {
+    gap: 0;
+  }
+  .aboutDrawing > .subjectSketch {
+    width: 85px;
+    height: 85px;
+  }
+  .aboutDrawing > .handNote {
+    font-size: 22px;
+  }
+  .aboutCopy > p {
+    font-size: 12px;
+  }
+  .faqIntro:after {
+    left: auto;
+    right: 20px;
+    top: -15px;
+    font-size: 75px;
+  }
+}
+@media (max-width: 560px) {
+  .hero {
+    padding-block: 35px 40px;
+    gap: 51px;
+  }
+  .hero h1 {
+    font-size: clamp(43px, 11.4vw, 59px);
+  }
+  .heroCopy > p {
+    max-width: 310px;
+    font-size: 13px;
+  }
+  .hero .eyebrow {
+    font-size: 8px;
+    margin-bottom: 23px;
+  }
+  .heroSketches {
+    display: none;
+  }
+  .heroEdition {
+    font-size: 6px;
+    letter-spacing: 0.035em;
+    margin-top: 25px;
+  }
+  .heroExperience {
+    width: calc(100% - 10px);
+    padding: 20px 13px 13px 21px;
+  }
+  .heroExperience:before {
+    left: 12px;
+  }
+  .heroHandNote {
+    font-size: 22px;
+    top: -32px;
+  }
+  .paperHeading {
+    font-size: 7px;
+    margin-bottom: 14px;
+  }
+  .paperCaption {
+    font-size: 18px;
+    line-height: 1.4;
+    margin-top: 12px;
+  }
+  .heroExperience .quizPreview {
+    padding: 18px 13px;
+  }
+  .notebookSpine {
+    left: -9px;
+    width: 17px;
+  }
+  .notebookSpine i {
+    width: 17px;
+  }
+  .subjects {
+    padding-block: 39px 32px;
+  }
+  .subjectIntro {
+    display: block;
+    margin-bottom: 25px;
+  }
+  .subjectIntro h2 {
+    font-size: 38px;
+  }
+  .subjectIntro .sectionTag {
+    font-size: 8px;
+    margin-bottom: 17px;
+  }
+  .subjectIntro > p {
+    padding: 0;
+    max-width: 300px;
+    margin-top: 19px;
+    font-size: 12px;
+  }
+  .subject {
+    gap: 11px;
+    min-height: 192px;
+    padding: 29px 0 20px 0;
+  }
+  .subject:nth-child(even) {
+    padding-left: 0;
+  }
+  .subjectSketch {
+    width: 105px;
+    height: 105px;
+  }
+  .subjectNumber,
+  .subject:nth-child(even) .subjectNumber {
+    left: 7px;
+    top: 16px;
+    font-size: 9px;
+  }
+  .subjectTitle {
+    font-size: 29px;
+  }
+  .subjectTopic {
+    font-size: 7px;
+    letter-spacing: 0.04em;
+  }
+  .subjectSample {
+    font-size: 10px;
+    line-height: 1.8;
+  }
+  .subjectTry {
+    font-size: 10px;
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .subjectPostscript {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 18px;
+    padding-left: 15px;
+  }
+  .subjectPostscript > .handNote {
+    font-size: 23px;
+  }
+  .subjectPostscript > span:last-child {
+    font-size: 10px;
+    padding-left: 24px;
+  }
+  .how {
+    margin-bottom: 39px;
+  }
+  .howHeading {
+    gap: 9px;
+  }
+  .steps article > span {
+    font-size: 35px;
+  }
+  .aboutLayout {
+    grid-template-columns: 1fr;
+    padding-block: 39px 43px;
+    gap: 30px;
+  }
+  .about h2 {
+    font-size: 43px;
+  }
+  .about .sectionTag {
+    font-size: 8px;
+  }
+  .aboutDrawing {
+    margin-top: 10px;
+    height: 83px;
+    gap: 20px;
+  }
+  .aboutDrawing > .subjectSketch {
+    width: 100px;
+    height: 100px;
+  }
+  .aboutDrawing > .handNote {
+    font-size: 25px;
+    max-width: 180px;
+  }
+  .aboutByline {
+    margin-top: 15px;
+  }
+  .aboutCopy > p {
+    font-size: 13px;
+  }
+  .faqIntro:after {
+    right: 15px;
+    top: 44px;
+    font-size: 77px;
+  }
+  .footerTop > p {
+    font-size: 22px;
   }
 }

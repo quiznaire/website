@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Brand from "./Brand";
 import QuizDemo from "./QuizDemo";
+import SubjectSketch from "./SubjectSketch";
 
 const subjects = [
   {
@@ -65,15 +66,12 @@ export default function Home() {
     setSubject(name);
     setRound((value) => value + 1);
     requestAnimationFrame(() => {
-      document
-        .getElementById("try-quiz")
-        ?.scrollIntoView({
-          behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
-            .matches
-            ? "instant"
-            : "smooth",
-          block: "center",
-        });
+      document.getElementById("try-quiz")?.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "instant"
+          : "smooth",
+        block: "center",
+      });
       document
         .querySelector("#try-quiz .demoQuestion")
         ?.focus({ preventScroll: true });
@@ -118,16 +116,18 @@ export default function Home() {
 
       <section className="hero shell" id="top">
         <div className="heroCopy">
-          <div className="eyebrow">SUBJECT QUIZZES. A LITTLE COMPETITION.</div>
+          <div className="eyebrow">
+            <span className="editionDot" /> QUIZNAIRE / THE PRACTICE EDITION
+          </div>
           <h1>
-            Think you know
+            A little thinking.
             <br />
-            <em>the answer?</em>
+            <em>A good challenge.</em>
           </h1>
           <p>
-            Physics, biology, history, or a bit of everything.
-            <br className="desktopBreak" /> Pick a subject and put what you know
-            to the test.
+            That fact you remember. That subject you loved.
+            <br className="desktopBreak" /> Put them to work in a short quiz.
+            Four questions, with something to learn after each one.
           </p>
           <div className="actions">
             <a className="pill" href="#try-quiz">
@@ -138,57 +138,69 @@ export default function Home() {
             4 questions · No account · No entry fee
           </p>
           <div className="heroEdition">
-            <span>THE QUIZNAIRE PRACTICE ROUND</span>
-            <span>VOL. 01</span>
+            <span>PHYSICS / BIOLOGY / HISTORY / GENERAL KNOWLEDGE</span>
           </div>
         </div>
         <div className="heroExperience">
+          <span className="notebookSpine" aria-hidden="true">
+            {Array.from({ length: 7 }, (_, i) => (
+              <i key={i} />
+            ))}
+          </span>
+          <span className="handNote heroHandNote">
+            Go with your first guess.
+          </span>
           <div className="paperHeading">
-            <span>THE QUESTION DESK</span>
+            <span>YOUR FIRST QUESTION</span>
             <span>01 — 04</span>
           </div>
           <QuizDemo key={`${subject}-${round}`} initialSubject={subject} />
-          <p className="paperCaption">
-            Choose an answer. We’ll explain it before you move on.
-          </p>
+          <p className="paperCaption">No timer here. Take your time.</p>
+        </div>
+        <div className="heroSketches" aria-hidden="true">
+          <SubjectSketch subject="Physics" />
+          <span className="sketchCaption">a change of direction</span>
+          <SubjectSketch subject="Biology" />
         </div>
       </section>
 
       <section className="subjects shell" id="subjects">
         <div className="subjectIntro">
-          <div className="sectionTag">The subjects</div>
-          <h2>
-            Start with
-            <br />
-            what you <em>know.</em>
-          </h2>
+          <div>
+            <div className="sectionTag">Pick your starting point</div>
+            <h2>
+              What’s <em>your subject?</em>
+            </h2>
+          </div>
           <p>
-            Each subject opens with a different question. You’ll then play a
-            mixed round covering all four.
+            Start with one you know, or one you wish you knew better. Every
+            practice round covers all four.
           </p>
-          <a className="textLink" href="#try-quiz">
-            Or jump straight in <span aria-hidden="true">↑</span>
-          </a>
         </div>
         <div className="subjectList">
           {subjects.map((item) => (
             <button
-              className="subject"
+              className={`subject subject${item.number}`}
               key={item.name}
               onClick={() => practice(item.name)}
               aria-label={`Start a practice round with ${item.name}`}
             >
-              <span className="subjectNumber">{item.number}</span>
+              <span className="subjectNumber">{item.number} /</span>
+              <SubjectSketch subject={item.name} />
               <span className="subjectBody">
-                <span className="subjectTitle">{item.name}</span>
                 <span className="subjectTopic">{item.topic}</span>
+                <span className="subjectTitle">{item.name}</span>
                 <span className="subjectSample">{item.sample}</span>
-              </span>
-              <span className="subjectAction" aria-hidden="true">
-                ↗
+                <span className="subjectTry">
+                  Try this subject <span aria-hidden="true">→</span>
+                </span>
               </span>
             </button>
           ))}
+        </div>
+        <div className="subjectPostscript">
+          <span className="handNote">You don’t have to know it all.</span>
+          <span>That’s what the explanations are for.</span>
         </div>
       </section>
 
@@ -229,18 +241,22 @@ export default function Home() {
           <div className="aboutHeading">
             <div className="sectionTag">About Quiznaire</div>
             <h2>
-              Knowledge deserves
-              <br />a <em>playing field.</em>
+              For the love of
+              <br />a <em>good question.</em>
             </h2>
+            <div className="aboutDrawing" aria-hidden="true">
+              <SubjectSketch subject="General Knowledge" />
+              <span className="handNote">There’s always more to know.</span>
+            </div>
             <span className="aboutByline">
               BY POWERPAGE EDUCATION PRIVATE LIMITED
             </span>
           </div>
           <div className="aboutCopy">
             <p>
-              Quiznaire is a subject-based quiz platform. We’re building a place
-              to test your understanding and compete in the subjects you care
-              about.
+              Some questions make you pause. Others make you think, “I knew
+              that!” We’re building Quiznaire around both: subject-based quizzes
+              that test your understanding and give you a reason to learn more.
             </p>
             <p>
               The app is preparing for launch. For now, this website gives you a
@@ -262,9 +278,9 @@ export default function Home() {
         <div className="faqIntro">
           <div className="sectionTag">Before you play</div>
           <h2>
-            A few
+            Before you
             <br />
-            <em>practical details.</em>
+            <em>jump in.</em>
           </h2>
         </div>
         <div className="faqList">
