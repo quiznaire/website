@@ -6,206 +6,394 @@ import Brand from "./Brand";
 import QuizDemo from "./QuizDemo";
 
 const subjects = [
-  ["Physics", "⚛", "Forces, motion & more", "blue"],
-  ["Biology", "⌁", "Life, cells & systems", "blue"],
-  ["History", "⌛", "People, places & time", "blue"],
-  ["General Knowledge", "◎", "A little bit of everything", "blue"],
+  {
+    name: "Physics",
+    icon: "⚛",
+    description: "Think in forces, motion and energy.",
+  },
+  {
+    name: "Biology",
+    icon: "⌁",
+    description: "Discover the science of living things.",
+  },
+  {
+    name: "History",
+    icon: "⌛",
+    description: "Connect the moments that shaped us.",
+  },
+  {
+    name: "General Knowledge",
+    icon: "◎",
+    description: "A little of everything. A lot to discover.",
+  },
 ];
-
-const steps = [
-  ["01", "Pick your arena", "Choose a subject and see the rules, entry details and prize structure before you join."],
-  ["02", "Play it live", "Answer fast-paced conceptual questions in a focused, fair quiz experience."],
-  ["03", "See how you did", "Get your score instantly and keep every result and reward in one place."],
+const faqs = [
+  [
+    "Can I try Quiznaire without signing up?",
+    "Yes. The free mini quiz on this page works right in your browser. There is no account, entry fee or prize involved. Pick an answer, read the explanation and move to the next question.",
+  ],
+  [
+    "Is the Quiznaire app available yet?",
+    "Quiznaire is preparing for launch. For now, explore the subjects and play the free practice round here. App availability will be shared on this website.",
+  ],
+  [
+    "Are there prizes in the mini quiz?",
+    "The website mini quiz is for practice only and does not offer prizes. For future competitive quizzes, check the individual rules, eligibility, entry details and prize structure before participating.",
+  ],
+  [
+    "Who is behind Quiznaire?",
+    "Quiznaire is a learning and quiz platform by Powerpage Education Private Limited. You can find more information in our Terms & Conditions and Privacy Policy.",
+  ],
 ];
-
-function Arrow() {
-  return <span aria-hidden="true">↗</span>;
-}
 
 export default function Home() {
   const [menu, setMenu] = useState(false);
-  const [notice, setNotice] = useState("");
-
+  const [subject, setSubject] = useState("Physics");
+  const [round, setRound] = useState(0);
   useEffect(() => {
-    if (!notice) return;
-    const timer = setTimeout(() => setNotice(""), 3600);
-    return () => clearTimeout(timer);
-  }, [notice]);
-
-  useEffect(() => {
-    const closeMenu = (event) => {
+    const close = (event) => {
       if (event.key === "Escape") setMenu(false);
     };
-
-    window.addEventListener("keydown", closeMenu);
-    return () => window.removeEventListener("keydown", closeMenu);
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
   }, []);
-
-  useEffect(() => {
-    if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const elements = document.querySelectorAll(".manifesto, .about, .sectionHead, .subject, .howTitle, .steps article, .trustGrid article, .cta .shell");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("revealIn");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    elements.forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
-  }, []);
-
-  const comingSoon = (label) => setNotice(`${label} is coming soon. Stay curious!`);
-
+  function practice(name) {
+    setSubject(name);
+    setRound((value) => value + 1);
+    requestAnimationFrame(() => {
+      document
+        .getElementById("try-quiz")
+        ?.scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
+            .matches
+            ? "instant"
+            : "smooth",
+          block: "center",
+        });
+      document
+        .querySelector("#try-quiz .demoQuestion")
+        ?.focus({ preventScroll: true });
+    });
+  }
   return (
     <main id="main-content">
-      <nav className="nav shell" aria-label="Primary navigation">
-        <Brand href="#top" />
-        <div className="navActions">
-        <button
-          className={`menuButton ${menu ? "active" : ""}`}
-          onClick={() => setMenu(!menu)}
-          aria-label={menu ? "Close menu" : "Open menu"}
-          aria-expanded={menu}
-          aria-controls="primary-links"
-        >
-          <span /><span /><span />
-        </button>
-        <div className={`links ${menu ? "open" : ""}`} id="primary-links">
-          <a href="#how" onClick={() => setMenu(false)}>How it works</a>
-          <a href="#about" onClick={() => setMenu(false)}>About</a>
-          <a href="#subjects" onClick={() => setMenu(false)}>Subjects</a>
-          <button className="pill dark small" onClick={() => comingSoon("The Quiznaire app")}>Get the app <Arrow /></button>
-        </div>
-        </div>
-      </nav>
+      <header className="siteHeader">
+        <nav className="nav shell" aria-label="Primary navigation">
+          <Brand href="#top" />
+          <button
+            className={`menuButton ${menu ? "active" : ""}`}
+            onClick={() => setMenu(!menu)}
+            aria-label={menu ? "Close menu" : "Open menu"}
+            aria-expanded={menu}
+            aria-controls="primary-links"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+          <div className={`links ${menu ? "open" : ""}`} id="primary-links">
+            <a href="#subjects" onClick={() => setMenu(false)}>
+              Subjects
+            </a>
+            <a href="#how" onClick={() => setMenu(false)}>
+              How it works
+            </a>
+            <a href="#about" onClick={() => setMenu(false)}>
+              Our story
+            </a>
+            <a
+              className="pill small"
+              href="#try-quiz"
+              onClick={() => setMenu(false)}
+            >
+              Try a free quiz <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </nav>
+      </header>
 
       <section className="hero shell" id="top">
         <div className="heroCopy">
-        <div className="eyebrow"><i /> For curious minds. And competitive spirits.</div>
-        <h1>Knowledge is<br /><em>worth showing.</em></h1>
-        <div className="heroBottom">
-          <p>Put your knowledge in play. Compete in subject quizzes, sharpen what you know and play for the rewards on offer.</p>
+          <div className="eyebrow">
+            <span className="statusDot" /> A little curiosity goes a long way
+          </div>
+          <h1>
+            You know more
+            <br />
+            than you <em>think.</em>
+          </h1>
+          <p>
+            Put it to the test. Explore your favourite subjects, challenge your
+            instincts and learn something new with every question.
+          </p>
           <div className="actions">
-            <a className="pill blue" href="#try-quiz">Try a free mini quiz <Arrow /></a>
-            <a className="textLink" href="#how">See how it works <span>↓</span></a>
+            <a className="pill" href="#try-quiz">
+              Let’s play a little <span aria-hidden="true">↗</span>
+            </a>
+            <a className="textLink" href="#subjects">
+              Find your subject <span aria-hidden="true">↓</span>
+            </a>
           </div>
-          <div className="heroChips"><span>✦ Play to challenge yourself</span><span>↗ Great quizzes start with great questions.</span></div>
-        </div>
-        </div>
-        <QuizDemo />
-      </section>
-
-      <section className="marquee" aria-label="Quiznaire highlights">
-        <div className="marqueeRing" aria-hidden="true">
-          <svg viewBox="0 0 300 300" role="presentation">
-            <defs>
-              <path id="quiznaire-ring-path" d="M150,150 m-112,0 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0" />
-            </defs>
-            <text>
-              <textPath href="#quiznaire-ring-path">PLAY ✦ LEARN ✦ COMPETE ✦ GROW ✦ STAY CURIOUS ✦ </textPath>
-            </text>
-          </svg>
-          <span>Q</span>
-        </div>
-      </section>
-
-      <section className="manifesto shell">
-        <div className="sectionTag">Why Quiznaire</div>
-        <div>
-          <h2>Let what you know<br /><em>take you further.</em></h2>
-          <p>Quiznaire turns what you know into momentum. Compete in subject-based quizzes, build sharper recall and discover something new in every round.</p>
-          <div className="statRow">
-            <div><strong>8+</strong><span>subjects on the horizon</span></div>
-            <div><strong>1</strong><span>question at a time</span></div>
-            <div><strong>∞</strong><span>reasons to stay curious</span></div>
+          <div className="heroReassurance">
+            <span>✓ No sign-up</span>
+            <span>✓ Free practice</span>
+            <span>✓ Instant explanations</span>
+          </div>
+          <div className="heroFootnote">
+            <span className="miniMark" aria-hidden="true">
+              Q.
+            </span>
+            <p>
+              For curious minds.
+              <br />
+              <strong>And competitive spirits.</strong>
+            </p>
           </div>
         </div>
-      </section>
-
-      <section className="about shell" id="about">
-        <div className="aboutIntro">
-          <div className="sectionTag">About Quiznaire</div>
-          <h2>Made for people who<br /><em>love a good question.</em></h2>
-        </div>
-        <div className="aboutCopy">
-          <p>Quiznaire is a home for curious minds and competitive spirits. We create thoughtful, subject-led quiz experiences that make learning feel lively, social and worth showing up for.</p>
-          <p>Whether you are revising a favourite subject or testing your instincts under pressure, every round gives you a reason to learn something new.</p>
-        </div>
-        <div className="aboutValues">
-          <article><span>01</span><h3>Curiosity first</h3><p>Questions that invite you to think, connect ideas and keep exploring.</p></article>
-          <article><span>02</span><h3>Fair competition</h3><p>Clear rules, focused formats and a level playing field for every quiz.</p></article>
-          <article><span>03</span><h3>Learning in motion</h3><p>Small moments of discovery that stay with you after the round ends.</p></article>
+        <div className="heroExperience">
+          <div className="experienceLabel">
+            <span>YOUR DAILY DOSE OF DISCOVERY</span>
+            <span aria-hidden="true">✦</span>
+          </div>
+          <QuizDemo key={`${subject}-${round}`} initialSubject={subject} />
+          <div className="experienceCaption">
+            <span>Four questions. Something new to learn.</span>
+            <span aria-hidden="true">↙</span>
+          </div>
         </div>
       </section>
 
-      <section className="subjects shell" id="subjects">
+      <div className="principles">
+        <div className="shell">
+          <span>FOLLOW YOUR CURIOSITY</span>
+          <strong>Think a little deeper.</strong>
+          <i aria-hidden="true">✦</i>
+          <strong>Play a little smarter.</strong>
+          <i aria-hidden="true">✦</i>
+          <strong>Keep discovering.</strong>
+        </div>
+      </div>
+
+      <section className="subjects shell sectionSpace" id="subjects">
         <div className="sectionHead">
           <div>
-            <div className="sectionTag">Choose your subject</div>
-            <h2>What would you<br /><em>like to explore?</em></h2>
+            <div className="sectionTag">01 / Find your spark</div>
+            <h2>
+              Where will your
+              <br />
+              <em>curiosity take you?</em>
+            </h2>
           </div>
-          <p>From the laws of motion to the stories that shaped us—there’s always another arena waiting.</p>
+          <p>
+            Start with what you love. Or surprise yourself with something
+            different.
+          </p>
         </div>
         <div className="subjectGrid">
-          {subjects.map(([name, icon, copy, color]) => (
-            <button className={`subject ${color}`} key={name} onClick={() => comingSoon(`${name} quizzes`)}>
-              <span className="subjectIcon" aria-hidden="true">{icon}</span>
-              <span><strong>{name}</strong><small>{copy}</small></span>
-              <Arrow />
+          {subjects.map((item, index) => (
+            <button
+              className="subject"
+              key={item.name}
+              onClick={() => practice(item.name)}
+              aria-label={`Start a practice round with ${item.name}`}
+            >
+              <div className="subjectTop">
+                <span className="subjectIcon" aria-hidden="true">
+                  {item.icon}
+                </span>
+                <span className="subjectNumber">0{index + 1}</span>
+              </div>
+              <h3>{item.name}</h3>
+              <p>{item.description}</p>
+              <div className="subjectBottom">
+                <span>Try a question</span>
+                <span aria-hidden="true">↗</span>
+              </div>
             </button>
           ))}
         </div>
-        <button className="allSubjects" onClick={() => comingSoon("More subjects")}>See all subjects <span>→</span></button>
+        <p className="sectionNote">
+          A taste of the subjects we’re building. These practice rounds include
+          a mix of all four.
+        </p>
       </section>
 
       <section className="how" id="how">
-        <div className="shell">
-          <div className="sectionTag light">How it works</div>
-          <div className="howTitle">
-            <h2>Three steps.<br /><em>Start when ready.</em></h2>
-            <p>Everything you need to go from “I know this” to “I proved it.”</p>
+        <div className="shell sectionSpace">
+          <div className="sectionHead">
+            <div>
+              <div className="sectionTag">02 / Less setup. More discovery.</div>
+              <h2>
+                A good question.
+                <br />
+                <em>A great place to start.</em>
+              </h2>
+            </div>
+            <a className="textLink" href="#try-quiz">
+              Try it for yourself <span aria-hidden="true">↗</span>
+            </a>
           </div>
           <div className="steps">
-            {steps.map(([num, title, copy]) => (
-              <article key={num}>
-                <span>{num}</span><h3>{title}</h3><p>{copy}</p>
-              </article>
-            ))}
+            <article>
+              <span className="stepNumber">01</span>
+              <div className="stepIllustration pick" aria-hidden="true">
+                <span>⚛</span>
+                <span>⌁</span>
+                <span>◎</span>
+              </div>
+              <h3>Follow your interest</h3>
+              <p>
+                Choose a subject below or jump straight into the free mini quiz.
+                No account needed.
+              </p>
+            </article>
+            <article>
+              <span className="stepNumber">02</span>
+              <div className="stepIllustration answer" aria-hidden="true">
+                <span>A</span>
+                <strong>Make your choice</strong>
+                <b>✓</b>
+              </div>
+              <h3>Trust your thinking</h3>
+              <p>
+                Read the question and pick your answer. Take your time; this
+                round is about discovery.
+              </p>
+            </article>
+            <article>
+              <span className="stepNumber">03</span>
+              <div className="stepIllustration learn" aria-hidden="true">
+                <span>✦</span>
+                <strong>A little wiser.</strong>
+              </div>
+              <h3>Take something away</h3>
+              <p>
+                Get an explanation after every answer, then see your score at
+                the end. Play again whenever you like.
+              </p>
+            </article>
           </div>
         </div>
       </section>
 
-      <section className="trust shell">
-        <div className="sectionTag">Made for fair play</div>
-        <div className="trustGrid">
-          <article><span>01</span><h3>Clear before you enter</h3><p>See the timing, format, entry details and prize structure for every quiz upfront.</p></article>
-          <article><span>02</span><h3>Concepts over calculators</h3><p>Focused, time-bound questions reward understanding and quick recall.</p></article>
-          <article><span>03</span><h3>Everything in one wallet</h3><p>Track your quiz rewards and winnings with a clear, transparent history.</p></article>
+      <section className="about shell sectionSpace" id="about">
+        <div className="aboutArt" aria-hidden="true">
+          <div className="artOrbit orbitOne" />
+          <div className="artOrbit orbitTwo" />
+          <span className="artLabel labelOne">A GOOD QUESTION</span>
+          <span className="artLabel labelTwo">A NEW PERSPECTIVE</span>
+          <span className="artQ">
+            Q<span>.</span>
+          </span>
+          <span className="artSpark">✦</span>
+          <span className="artBottom">THINK. PLAY. GROW.</span>
+        </div>
+        <div className="aboutCopy">
+          <div className="sectionTag">03 / The idea behind Quiznaire</div>
+          <h2>
+            Learning should
+            <br />
+            leave you <em>curious.</em>
+          </h2>
+          <p>
+            We believe a good question can do more than test your memory. It can
+            change how you see something, connect a new idea or make you want to
+            know more.
+          </p>
+          <p>
+            Quiznaire brings that feeling to subject-led quizzes, with
+            thoughtful questions and a competitive spirit. We’re preparing for
+            launch. Until then, come explore with us.
+          </p>
+          <div className="aboutSignature">
+            <span aria-hidden="true">↗</span>
+            <p>
+              Empowering talent.
+              <br />
+              <strong>Rewarding knowledge.</strong>
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="cta">
-        <div className="shell">
-          <span className="miniBurst">READY?</span>
-          <h2>Your next question<br /><em>is waiting.</em></h2>
-          <p>Quiznaire is getting ready for launch. Until then, give your curiosity a workout with our free mini quiz.</p>
-          <a className="pill lightPill" href="#try-quiz">Put me to the test <Arrow /></a>
+      <section className="faq shell sectionSpace" id="questions">
+        <div className="faqIntro">
+          <div className="sectionTag">A few things to know</div>
+          <h2>
+            Good questions.
+            <br />
+            <em>Clear answers.</em>
+          </h2>
+          <p>Before you dive in, here are the essentials.</p>
         </div>
+        <div className="faqList">
+          {faqs.map(([question, answer]) => (
+            <details key={question}>
+              <summary>
+                {question}
+                <span aria-hidden="true">+</span>
+              </summary>
+              <p>{answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section className="cta shell">
+        <div>
+          <div className="sectionTag">
+            Your next discovery is one question away
+          </div>
+          <h2>
+            Go on. <em>Surprise yourself.</em>
+          </h2>
+          <p>A quick round, a fresh perspective, a little more knowledge.</p>
+          <a className="pill whitePill" href="#try-quiz">
+            Try the free mini quiz <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <span className="ctaSymbol" aria-hidden="true">
+          ?
+        </span>
       </section>
 
       <footer className="footer shell">
-        <div className="footerBrand">
-          <Brand href="#top" />
-          <p>A learning and quiz platform by <a href="https://powerpageedu.com">Powerpage Education Private Limited</a>.</p>
+        <div className="footerTop">
+          <div className="footerBrand">
+            <Brand href="#top" />
+            <p>
+              For the joy of knowing.
+              <br />
+              And the thrill of finding out.
+            </p>
+            <span className="launchBadge">
+              <span className="statusDot" /> App preparing for launch
+            </span>
+          </div>
+          <div>
+            <strong>Discover</strong>
+            <a href="#subjects">Explore subjects</a>
+            <a href="#try-quiz">Free mini quiz</a>
+            <a href="#how">How it works</a>
+          </div>
+          <div>
+            <strong>Quiznaire</strong>
+            <a href="#about">Our story</a>
+            <a href="#questions">Common questions</a>
+            <a href="https://powerpageedu.com">Our company ↗</a>
+          </div>
+          <div>
+            <strong>The essentials</strong>
+            <Link href="/terms">Terms &amp; Conditions</Link>
+            <Link href="/privacy">Privacy Policy</Link>
+          </div>
         </div>
-        <div><strong>Explore</strong><a href="#how">How it works</a><a href="#subjects">Subjects</a><a href="#about">About</a></div>
-        <div><strong>Company</strong><a href="#about">About</a><button onClick={() => comingSoon("Help centre")}>Help & support</button></div>
-        <div><strong>Legal</strong><Link href="/terms">Terms &amp; Conditions</Link><Link href="/privacy">Privacy Policy</Link></div>
-        <small>© 2026 <a href="https://powerpageedu.com">Powerpage Education Pvt. Ltd.</a> All rights reserved.</small>
+        <div className="footerBottom">
+          <small>© 2026 Powerpage Education Private Limited</small>
+          <span>Made for minds that never stop exploring.</span>
+          <a href="#top">Back to top ↑</a>
+        </div>
       </footer>
-      {notice && <div className="toast" role="status">{notice}<button aria-label="Dismiss notification" onClick={() => setNotice("")}>×</button></div>}
     </main>
   );
 }
