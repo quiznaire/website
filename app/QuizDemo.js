@@ -94,13 +94,13 @@ export default function QuizDemo({ initialSubject = "Physics" }) {
               ✦
             </span>
             <h2 ref={heading} tabIndex={-1}>
-              Curiosity looks good on you.
+              Your practice result.
             </h2>
             <p>
               You scored <strong>{score} out of 4</strong>.{" "}
               {score === 4
                 ? "A perfect round!"
-                : "Every question is a chance to learn."}
+                : "Review the explanations and try another round."}
             </p>
             <button className="pill" onClick={restart}>
               Play again <span aria-hidden="true">↻</span>
@@ -151,15 +151,11 @@ export default function QuizDemo({ initialSubject = "Physics" }) {
             >
               {selected !== null ? (
                 <>
-                  <strong>
-                    {correct
-                      ? "You nailed it!"
-                      : "A little discovery for today."}
-                  </strong>
+                  <strong>{correct ? "Correct." : "Not quite."}</strong>
                   <span>{question.explanation}</span>
                 </>
               ) : (
-                <span>Pick an answer. See what you know.</span>
+                <span>Choose one answer to continue.</span>
               )}
             </div>
             <footer>
@@ -169,17 +165,6 @@ export default function QuizDemo({ initialSubject = "Physics" }) {
               </button>
             </footer>
           </>
-        )}
-        {selected !== null && correct && !finished && (
-          <div
-            className="confetti"
-            aria-hidden="true"
-            key={`celebrate-${index}`}
-          >
-            {Array.from({ length: 12 }, (_, i) => (
-              <i key={i} style={{ "--n": i, "--spin": `${i * 47}deg` }} />
-            ))}
-          </div>
         )}
       </div>
     </div>

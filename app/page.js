@@ -8,41 +8,45 @@ import QuizDemo from "./QuizDemo";
 const subjects = [
   {
     name: "Physics",
-    icon: "⚛",
-    description: "Think in forces, motion and energy.",
+    topic: "Motion & energy",
+    sample: "Does constant speed always mean constant velocity?",
+    number: "01",
   },
   {
     name: "Biology",
-    icon: "⌁",
-    description: "Discover the science of living things.",
+    topic: "Cells & living systems",
+    sample: "What makes photosynthesis possible inside a plant cell?",
+    number: "02",
   },
   {
     name: "History",
-    icon: "⌛",
-    description: "Connect the moments that shaped us.",
+    topic: "India & the world",
+    sample: "How well do you remember the dates that shaped India?",
+    number: "03",
   },
   {
     name: "General Knowledge",
-    icon: "◎",
-    description: "A little of everything. A lot to discover.",
+    topic: "Geography & more",
+    sample: "Which ocean covers the largest area of our planet?",
+    number: "04",
   },
 ];
 const faqs = [
   [
-    "Can I try Quiznaire without signing up?",
-    "Yes. The free mini quiz on this page works right in your browser. There is no account, entry fee or prize involved. Pick an answer, read the explanation and move to the next question.",
+    "Do I need an account?",
+    "Not for this practice round. It runs in your browser, with four questions and an explanation after each answer.",
   ],
   [
-    "Is the Quiznaire app available yet?",
-    "Quiznaire is preparing for launch. For now, explore the subjects and play the free practice round here. App availability will be shared on this website.",
+    "Can I download the app?",
+    "The Quiznaire app is preparing for launch. We’ll share its availability here. The practice round on this page is available now.",
   ],
   [
-    "Are there prizes in the mini quiz?",
-    "The website mini quiz is for practice only and does not offer prizes. For future competitive quizzes, check the individual rules, eligibility, entry details and prize structure before participating.",
+    "Does the practice quiz have prizes?",
+    "No. This round has no entry fee or prizes. For competitive quizzes, review the specific rules, eligibility, entry details and prize structure before joining.",
   ],
   [
-    "Who is behind Quiznaire?",
-    "Quiznaire is a learning and quiz platform by Powerpage Education Private Limited. You can find more information in our Terms & Conditions and Privacy Policy.",
+    "Who runs Quiznaire?",
+    "Quiznaire is a brand of Powerpage Education Private Limited. Our Terms & Conditions and Privacy Policy explain the platform and your rights.",
   ],
 ];
 
@@ -93,20 +97,20 @@ export default function Home() {
           </button>
           <div className={`links ${menu ? "open" : ""}`} id="primary-links">
             <a href="#subjects" onClick={() => setMenu(false)}>
-              Subjects
-            </a>
-            <a href="#how" onClick={() => setMenu(false)}>
-              How it works
+              The subjects
             </a>
             <a href="#about" onClick={() => setMenu(false)}>
-              Our story
+              About Quiznaire
+            </a>
+            <a href="#questions" onClick={() => setMenu(false)}>
+              Questions
             </a>
             <a
-              className="pill small"
+              className="navPlay"
               href="#try-quiz"
               onClick={() => setMenu(false)}
             >
-              Try a free quiz <span aria-hidden="true">↗</span>
+              Play a practice round <span aria-hidden="true">↗</span>
             </a>
           </div>
         </nav>
@@ -114,217 +118,154 @@ export default function Home() {
 
       <section className="hero shell" id="top">
         <div className="heroCopy">
-          <div className="eyebrow">
-            <span className="statusDot" /> A little curiosity goes a long way
-          </div>
+          <div className="eyebrow">SUBJECT QUIZZES. A LITTLE COMPETITION.</div>
           <h1>
-            You know more
+            Think you know
             <br />
-            than you <em>think.</em>
+            <em>the answer?</em>
           </h1>
           <p>
-            Put it to the test. Explore your favourite subjects, challenge your
-            instincts and learn something new with every question.
+            Physics, biology, history, or a bit of everything.
+            <br className="desktopBreak" /> Pick a subject and put what you know
+            to the test.
           </p>
           <div className="actions">
             <a className="pill" href="#try-quiz">
-              Let’s play a little <span aria-hidden="true">↗</span>
-            </a>
-            <a className="textLink" href="#subjects">
-              Find your subject <span aria-hidden="true">↓</span>
+              Start the practice round <span aria-hidden="true">→</span>
             </a>
           </div>
-          <div className="heroReassurance">
-            <span>✓ No sign-up</span>
-            <span>✓ Free practice</span>
-            <span>✓ Instant explanations</span>
-          </div>
-          <div className="heroFootnote">
-            <span className="miniMark" aria-hidden="true">
-              Q.
-            </span>
-            <p>
-              For curious minds.
-              <br />
-              <strong>And competitive spirits.</strong>
-            </p>
+          <p className="practiceNote">
+            4 questions · No account · No entry fee
+          </p>
+          <div className="heroEdition">
+            <span>THE QUIZNAIRE PRACTICE ROUND</span>
+            <span>VOL. 01</span>
           </div>
         </div>
         <div className="heroExperience">
-          <div className="experienceLabel">
-            <span>YOUR DAILY DOSE OF DISCOVERY</span>
-            <span aria-hidden="true">✦</span>
+          <div className="paperHeading">
+            <span>THE QUESTION DESK</span>
+            <span>01 — 04</span>
           </div>
           <QuizDemo key={`${subject}-${round}`} initialSubject={subject} />
-          <div className="experienceCaption">
-            <span>Four questions. Something new to learn.</span>
-            <span aria-hidden="true">↙</span>
-          </div>
+          <p className="paperCaption">
+            Choose an answer. We’ll explain it before you move on.
+          </p>
         </div>
       </section>
 
-      <div className="principles">
-        <div className="shell">
-          <span>FOLLOW YOUR CURIOSITY</span>
-          <strong>Think a little deeper.</strong>
-          <i aria-hidden="true">✦</i>
-          <strong>Play a little smarter.</strong>
-          <i aria-hidden="true">✦</i>
-          <strong>Keep discovering.</strong>
-        </div>
-      </div>
-
-      <section className="subjects shell sectionSpace" id="subjects">
-        <div className="sectionHead">
-          <div>
-            <div className="sectionTag">01 / Find your spark</div>
-            <h2>
-              Where will your
-              <br />
-              <em>curiosity take you?</em>
-            </h2>
-          </div>
+      <section className="subjects shell" id="subjects">
+        <div className="subjectIntro">
+          <div className="sectionTag">The subjects</div>
+          <h2>
+            Start with
+            <br />
+            what you <em>know.</em>
+          </h2>
           <p>
-            Start with what you love. Or surprise yourself with something
-            different.
+            Each subject opens with a different question. You’ll then play a
+            mixed round covering all four.
           </p>
+          <a className="textLink" href="#try-quiz">
+            Or jump straight in <span aria-hidden="true">↑</span>
+          </a>
         </div>
-        <div className="subjectGrid">
-          {subjects.map((item, index) => (
+        <div className="subjectList">
+          {subjects.map((item) => (
             <button
               className="subject"
               key={item.name}
               onClick={() => practice(item.name)}
               aria-label={`Start a practice round with ${item.name}`}
             >
-              <div className="subjectTop">
-                <span className="subjectIcon" aria-hidden="true">
-                  {item.icon}
-                </span>
-                <span className="subjectNumber">0{index + 1}</span>
-              </div>
-              <h3>{item.name}</h3>
-              <p>{item.description}</p>
-              <div className="subjectBottom">
-                <span>Try a question</span>
-                <span aria-hidden="true">↗</span>
-              </div>
+              <span className="subjectNumber">{item.number}</span>
+              <span className="subjectBody">
+                <span className="subjectTitle">{item.name}</span>
+                <span className="subjectTopic">{item.topic}</span>
+                <span className="subjectSample">{item.sample}</span>
+              </span>
+              <span className="subjectAction" aria-hidden="true">
+                ↗
+              </span>
             </button>
           ))}
         </div>
-        <p className="sectionNote">
-          A taste of the subjects we’re building. These practice rounds include
-          a mix of all four.
-        </p>
       </section>
 
-      <section className="how" id="how">
-        <div className="shell sectionSpace">
-          <div className="sectionHead">
+      <section className="how shell" id="how">
+        <div className="howHeading">
+          <span className="sectionTag">Playing here is simple</span>
+          <span className="howNote">
+            Practice only. No prizes in this round.
+          </span>
+        </div>
+        <div className="steps">
+          <article>
+            <span>1.</span>
             <div>
-              <div className="sectionTag">02 / Less setup. More discovery.</div>
-              <h2>
-                A good question.
-                <br />
-                <em>A great place to start.</em>
-              </h2>
+              <h3>Make your choice</h3>
+              <p>Select one answer from the three options.</p>
             </div>
-            <a className="textLink" href="#try-quiz">
-              Try it for yourself <span aria-hidden="true">↗</span>
+          </article>
+          <article>
+            <span>2.</span>
+            <div>
+              <h3>Read the explanation</h3>
+              <p>Find out why the right answer is right.</p>
+            </div>
+          </article>
+          <article>
+            <span>3.</span>
+            <div>
+              <h3>Check your score</h3>
+              <p>Finish all four questions. Replay if you like.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="about" id="about">
+        <div className="shell aboutLayout">
+          <div className="aboutHeading">
+            <div className="sectionTag">About Quiznaire</div>
+            <h2>
+              Knowledge deserves
+              <br />a <em>playing field.</em>
+            </h2>
+            <span className="aboutByline">
+              BY POWERPAGE EDUCATION PRIVATE LIMITED
+            </span>
+          </div>
+          <div className="aboutCopy">
+            <p>
+              Quiznaire is a subject-based quiz platform. We’re building a place
+              to test your understanding and compete in the subjects you care
+              about.
+            </p>
+            <p>
+              The app is preparing for launch. For now, this website gives you a
+              short practice round with explanations, without needing an
+              account.
+            </p>
+            <div className="launchNote">
+              <span>APP STATUS</span>
+              <strong>Preparing for launch</strong>
+            </div>
+            <a className="aboutCompany" href="https://powerpageedu.com">
+              More about Powerpage Education <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <div className="steps">
-            <article>
-              <span className="stepNumber">01</span>
-              <div className="stepIllustration pick" aria-hidden="true">
-                <span>⚛</span>
-                <span>⌁</span>
-                <span>◎</span>
-              </div>
-              <h3>Follow your interest</h3>
-              <p>
-                Choose a subject below or jump straight into the free mini quiz.
-                No account needed.
-              </p>
-            </article>
-            <article>
-              <span className="stepNumber">02</span>
-              <div className="stepIllustration answer" aria-hidden="true">
-                <span>A</span>
-                <strong>Make your choice</strong>
-                <b>✓</b>
-              </div>
-              <h3>Trust your thinking</h3>
-              <p>
-                Read the question and pick your answer. Take your time; this
-                round is about discovery.
-              </p>
-            </article>
-            <article>
-              <span className="stepNumber">03</span>
-              <div className="stepIllustration learn" aria-hidden="true">
-                <span>✦</span>
-                <strong>A little wiser.</strong>
-              </div>
-              <h3>Take something away</h3>
-              <p>
-                Get an explanation after every answer, then see your score at
-                the end. Play again whenever you like.
-              </p>
-            </article>
-          </div>
         </div>
       </section>
 
-      <section className="about shell sectionSpace" id="about">
-        <div className="aboutArt" aria-hidden="true">
-          <div className="artOrbit orbitOne" />
-          <div className="artOrbit orbitTwo" />
-          <span className="artLabel labelOne">A GOOD QUESTION</span>
-          <span className="artLabel labelTwo">A NEW PERSPECTIVE</span>
-          <span className="artQ">
-            Q<span>.</span>
-          </span>
-          <span className="artSpark">✦</span>
-          <span className="artBottom">THINK. PLAY. GROW.</span>
-        </div>
-        <div className="aboutCopy">
-          <div className="sectionTag">03 / The idea behind Quiznaire</div>
-          <h2>
-            Learning should
-            <br />
-            leave you <em>curious.</em>
-          </h2>
-          <p>
-            We believe a good question can do more than test your memory. It can
-            change how you see something, connect a new idea or make you want to
-            know more.
-          </p>
-          <p>
-            Quiznaire brings that feeling to subject-led quizzes, with
-            thoughtful questions and a competitive spirit. We’re preparing for
-            launch. Until then, come explore with us.
-          </p>
-          <div className="aboutSignature">
-            <span aria-hidden="true">↗</span>
-            <p>
-              Empowering talent.
-              <br />
-              <strong>Rewarding knowledge.</strong>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="faq shell sectionSpace" id="questions">
+      <section className="faq shell" id="questions">
         <div className="faqIntro">
-          <div className="sectionTag">A few things to know</div>
+          <div className="sectionTag">Before you play</div>
           <h2>
-            Good questions.
+            A few
             <br />
-            <em>Clear answers.</em>
+            <em>practical details.</em>
           </h2>
-          <p>Before you dive in, here are the essentials.</p>
         </div>
         <div className="faqList">
           {faqs.map(([question, answer]) => (
@@ -336,62 +277,27 @@ export default function Home() {
               <p>{answer}</p>
             </details>
           ))}
-        </div>
-      </section>
-
-      <section className="cta shell">
-        <div>
-          <div className="sectionTag">
-            Your next discovery is one question away
+          <div className="faqLegal">
+            <Link href="/terms">Terms &amp; Conditions ↗</Link>
+            <Link href="/privacy">Privacy Policy ↗</Link>
           </div>
-          <h2>
-            Go on. <em>Surprise yourself.</em>
-          </h2>
-          <p>A quick round, a fresh perspective, a little more knowledge.</p>
-          <a className="pill whitePill" href="#try-quiz">
-            Try the free mini quiz <span aria-hidden="true">↗</span>
-          </a>
         </div>
-        <span className="ctaSymbol" aria-hidden="true">
-          ?
-        </span>
       </section>
 
       <footer className="footer shell">
         <div className="footerTop">
-          <div className="footerBrand">
-            <Brand href="#top" />
-            <p>
-              For the joy of knowing.
-              <br />
-              And the thrill of finding out.
-            </p>
-            <span className="launchBadge">
-              <span className="statusDot" /> App preparing for launch
-            </span>
-          </div>
-          <div>
-            <strong>Discover</strong>
-            <a href="#subjects">Explore subjects</a>
-            <a href="#try-quiz">Free mini quiz</a>
-            <a href="#how">How it works</a>
-          </div>
-          <div>
-            <strong>Quiznaire</strong>
-            <a href="#about">Our story</a>
-            <a href="#questions">Common questions</a>
-            <a href="https://powerpageedu.com">Our company ↗</a>
-          </div>
-          <div>
-            <strong>The essentials</strong>
-            <Link href="/terms">Terms &amp; Conditions</Link>
-            <Link href="/privacy">Privacy Policy</Link>
-          </div>
+          <Brand href="#top" />
+          <p>Empowering talent. Rewarding knowledge.</p>
+          <a className="textLink" href="#try-quiz">
+            Back to the quiz ↑
+          </a>
         </div>
         <div className="footerBottom">
           <small>© 2026 Powerpage Education Private Limited</small>
-          <span>Made for minds that never stop exploring.</span>
-          <a href="#top">Back to top ↑</a>
+          <div>
+            <Link href="/terms">Terms &amp; Conditions</Link>
+            <Link href="/privacy">Privacy Policy</Link>
+          </div>
         </div>
       </footer>
     </main>
