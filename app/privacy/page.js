@@ -1,6 +1,7 @@
 import LegalShell from "../legal/LegalShell";
 
 export const metadata = {
+  alternates: { canonical: "/privacy/" },
   title: "Privacy Policy — Quiznaire",
   description: "How Quiznaire collects, uses, shares, protects and retains personal information.",
 };

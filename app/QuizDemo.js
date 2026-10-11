@@ -1,107 +1,122 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
+import { practiceQuestions } from "./quiz-data";
 
-const questions = [
-  {
-    subject: "Physics",
-    question: "Which quantity stays constant in uniform circular motion?",
-    answers: ["Speed", "Velocity", "Direction"],
-    correct: 0,
-    explanation:
-      "Speed stays constant. Velocity changes because the direction of motion keeps changing.",
-  },
-  {
-    subject: "Biology",
-    question: "Which part of a plant cell carries out photosynthesis?",
-    answers: ["Nucleus", "Chloroplast", "Cell wall"],
-    correct: 1,
-    explanation:
-      "Chloroplasts contain chlorophyll, which absorbs light energy for photosynthesis.",
-  },
-  {
-    subject: "History",
-    question: "In which year did India gain independence?",
-    answers: ["1950", "1942", "1947"],
-    correct: 2,
-    explanation:
-      "India gained independence on 15 August 1947. The Constitution came into effect in 1950.",
-  },
-  {
-    subject: "General Knowledge",
-    question: "Which is the largest ocean on Earth?",
-    answers: ["Atlantic Ocean", "Pacific Ocean", "Indian Ocean"],
-    correct: 1,
-    explanation: "The Pacific is the largest ocean on Earth by surface area.",
-  },
-];
-
-export default function QuizDemo({ initialSubject = "Physics" }) {
+export default function QuizDemo({
+  initialSubject = "Physics",
+  focusOnMount = false,
+}) {
   const start = Math.max(
     0,
-    questions.findIndex((question) => question.subject === initialSubject),
+    practiceQuestions.findIndex((item) => item.subject === initialSubject),
   );
-  const roundQuestions = [
-    ...questions.slice(start),
-    ...questions.slice(0, start),
+  const questions = [
+    ...practiceQuestions.slice(start),
+    ...practiceQuestions.slice(0, start),
   ];
   const [index, setIndex] = useState(0);
-  const [selected, setSelected] = useState(null);
-  const [score, setScore] = useState(0);
+  const [answers, setAnswers] = useState([]);
   const [finished, setFinished] = useState(false);
   const heading = useRef(null);
-  const question = roundQuestions[index];
+  const pendingFocus = useRef(false);
+  useLayoutEffect(() => {
+    if (pendingFocus.current || focusOnMount) {
+      heading.current?.focus({ preventScroll: true });
+      pendingFocus.current = false;
+    }
+  }, [index, finished, focusOnMount]);
+  const question = questions[index];
+  const selected = answers[index] ?? null;
+  const answered = selected !== null;
   const correct = selected === question.correct;
+  const score = answers.reduce(
+    (total, answer, questionIndex) =>
+      total + Number(answer === questions[questionIndex].correct),
+    0,
+  );
+  const count = questions.length;
 
   function answer(value) {
-    if (selected !== null) return;
-    setSelected(value);
-    if (value === question.correct) setScore((value) => value + 1);
+    if (answered) return;
+    setAnswers((previous) => [...previous, value]);
   }
-
   function next() {
-    if (index === questions.length - 1) setFinished(true);
-    else {
-      setIndex((value) => value + 1);
-      setSelected(null);
-    }
-    requestAnimationFrame(() => heading.current?.focus());
+    if (!answered) return;
+    pendingFocus.current = true;
+    if (index === count - 1) setFinished(true);
+    else setIndex((value) => value + 1);
   }
-
   function restart() {
+    pendingFocus.current = true;
     setIndex(0);
-    setSelected(null);
-    setScore(0);
+    setAnswers([]);
     setFinished(false);
-    requestAnimationFrame(() => heading.current?.focus());
   }
 
   return (
-    <div className="heroVisual" id="try-quiz">
+    <section
+      className="heroVisual"
+      id="try-quiz"
+      aria-label="Free practice quiz"
+    >
       <div className="quizPreview">
         <div className="quizPreviewTop">
           <span>
-            <i className="liveDot" /> Free mini quiz
+            <i className="liveDot" aria-hidden="true" /> Free mini quiz
           </span>
-          <b>No sign-up needed</b>
+          <span className="quizAccountNote">No sign-up needed</span>
         </div>
-        <div className="quizProgress" aria-hidden="true">
-          <i style={{ width: `${((finished ? 4 : index + 1) / 4) * 100}%` }} />
+        <div
+          className="quizProgress"
+          role="progressbar"
+          aria-label="Questions answered"
+          aria-valuemin={0}
+          aria-valuemax={count}
+          aria-valuenow={answers.length}
+        >
+          <i style={{ width: `${(answers.length / count) * 100}%` }} />
         </div>
         {finished ? (
           <div className="demoResult">
-            <span className="resultMedal" aria-hidden="true">
-              ✦
-            </span>
+            <span className="resultEyebrow">ROUND COMPLETE</span>
             <h2 ref={heading} tabIndex={-1}>
               Your practice result.
             </h2>
-            <p>
-              You scored <strong>{score} out of 4</strong>.{" "}
-              {score === 4
-                ? "A perfect round!"
-                : "Review the explanations and try another round."}
+            <p className="resultScore">
+              <strong>{score}</strong>
+              <span>out of {count}</span>
             </p>
+            <p>
+              {score === count
+                ? "All four correct. Nicely done."
+                : "Here’s what to take into your next round."}
+            </p>
+            <details className="resultReview">
+              <summary>
+                Review your answers <span aria-hidden="true">+</span>
+              </summary>
+              <ol>
+                {questions.map((item, i) => (
+                  <li key={item.subject}>
+                    <div>
+                      <strong>{item.subject}</strong>
+                      <span>
+                        {answers[i] === item.correct ? "Correct" : "Incorrect"}
+                      </span>
+                    </div>
+                    <p>{item.question}</p>
+                    <p className="reviewAnswer">
+                      Your answer: {item.answers[answers[i]]}
+                    </p>
+                    <p className="reviewCorrect">
+                      Correct answer: {item.answers[item.correct]}
+                    </p>
+                    <p>{item.explanation}</p>
+                  </li>
+                ))}
+              </ol>
+            </details>
             <button className="pill" onClick={restart}>
               Play again <span aria-hidden="true">↻</span>
             </button>
@@ -109,33 +124,39 @@ export default function QuizDemo({ initialSubject = "Physics" }) {
           </div>
         ) : (
           <>
-            <span className="quizMeta">
+            <div className="quizMeta">
               <span>{question.subject}</span>
-              <b>Question {index + 1} / 4</b>
-            </span>
-            <h3
+              <span>
+                Question {index + 1} / {count}
+              </span>
+            </div>
+            <h2
               className="demoQuestion"
               ref={heading}
               tabIndex={-1}
               key={index}
             >
               {question.question}
-            </h3>
+            </h2>
             <div
               className="demoAnswers"
               role="group"
-              aria-label="Choose your answer"
+              aria-labelledby="answer-instruction"
             >
+              <span id="answer-instruction" className="srOnly">
+                Choose one answer
+              </span>
               {question.answers.map((label, value) => (
                 <button
                   key={`${index}-${value}`}
-                  className={`quizAnswer ${selected !== null && value === question.correct ? "correct" : ""} ${selected === value && !correct ? "incorrect" : ""}`}
-                  disabled={selected !== null}
+                  className={`quizAnswer ${answered && value === question.correct ? "correct" : ""} ${selected === value && !correct ? "incorrect" : ""}`}
+                  aria-pressed={selected === value}
+                  disabled={answered}
                   onClick={() => answer(value)}
                 >
                   <i aria-hidden="true">{String.fromCharCode(65 + value)}</i>
                   <span>{label}</span>
-                  {selected !== null && value === question.correct && (
+                  {answered && value === question.correct && (
                     <b aria-label="Correct answer">✓</b>
                   )}
                   {selected === value && !correct && (
@@ -145,11 +166,11 @@ export default function QuizDemo({ initialSubject = "Physics" }) {
               ))}
             </div>
             <div
-              className={`answerFeedback ${selected !== null ? "shown" : ""}`}
+              className={`answerFeedback ${answered ? "shown" : ""}`}
               role="status"
               aria-atomic="true"
             >
-              {selected !== null ? (
+              {answered ? (
                 <>
                   <strong>{correct ? "Correct." : "Not quite."}</strong>
                   <span>{question.explanation}</span>
@@ -159,14 +180,18 @@ export default function QuizDemo({ initialSubject = "Physics" }) {
               )}
             </div>
             <footer>
-              <span>{score} correct · Just for practice</span>
-              <button disabled={selected === null} onClick={next}>
-                {index === 3 ? "See my score" : "Next question"} →
+              <span>
+                <strong>{score} correct</strong>
+                <small>Practice only</small>
+              </span>
+              <button disabled={!answered} onClick={next}>
+                {index === count - 1 ? "See my score" : "Next question"}{" "}
+                <span aria-hidden="true">→</span>
               </button>
             </footer>
           </>
         )}
       </div>
-    </div>
+    </section>
   );
 }

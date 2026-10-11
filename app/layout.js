@@ -3,7 +3,8 @@ import "./globals.css";
 export const metadata = {
   metadataBase: new URL("https://quiznaire.in"),
   title: "Quiznaire — Empowering Talent & Rewarding Knowledge",
-  description: "Play subject-led quizzes, test what you know and compete for the rewards on offer.",
+  description:
+    "Try a free four-question practice round in physics, biology, history and general knowledge. Quiznaire’s subject-based quiz app is preparing for launch.",
   creator: "Powerpage Education Private Limited",
   publisher: "Powerpage Education Private Limited",
   alternates: {
@@ -11,7 +12,8 @@ export const metadata = {
   },
   openGraph: {
     title: "Quiznaire — Empowering Talent & Rewarding Knowledge",
-    description: "Play subject-led quizzes, test what you know and compete for the rewards on offer.",
+    description:
+      "Try a free four-question practice round in physics, biology, history and general knowledge. Quiznaire’s subject-based quiz app is preparing for launch.",
     url: "https://quiznaire.in",
     siteName: "Quiznaire",
     images: ["/logo.png"],
@@ -36,11 +38,25 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preload"
+          href="/fonts/dm-sans.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/newsreader.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
       </head>
       <body>
-        <a className="skipLink" href="#main-content">Skip to content</a>
+        <a className="skipLink" href="#main-content">
+          Skip to content
+        </a>
         {children}
         <script
           type="application/ld+json"

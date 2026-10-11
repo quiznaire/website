@@ -1,6 +1,7 @@
 import LegalShell from "../legal/LegalShell";
 
 export const metadata = {
+  alternates: { canonical: "/terms/" },
   title: "Terms & Conditions — Quiznaire",
   description: "The rules governing Quiznaire accounts, quiz contests and prizes.",
 };
